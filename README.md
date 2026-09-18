@@ -16,4 +16,8 @@ npm run dev
 
 ## Deploy
 
-Vercel project root is `web`. Production deploys from the GitHub repo `oTTeuMsTudio/oTTeGames`.
+Live: https://ottegames.vercel.app
+
+Vercel project root is `web`. GitHub repo: https://github.com/oTTeuMsTudio/oTTeGames
+
+oTTe Bot uses SpaceXAI (`grok-4.6`). Set `XAI_API_KEY` in Vercel project env (or `web/.env.local`) so the right-hand chat can reply.
