@@ -4,7 +4,10 @@ web/.next/
 web/out/
 web/.env
 web/.env*.local
+!web/.env.example
 web/.vercel
 .vercel
+.env.local
 .DS_Store
 *.log
+
