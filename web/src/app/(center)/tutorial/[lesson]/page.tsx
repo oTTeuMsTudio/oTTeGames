@@ -105,7 +105,8 @@ export default async function LessonPage({
                   <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
                     {asset.graphs.map((graph) => (
                       <li key={graph.name}>
-                        {graph.name} · {graph.nodes} nodes
+                        {graph.name} · {graph.nodes}{" "}
+                        {graph.nodes === 1 ? "node" : "nodes"}
                         {graph.calls.length > 0
                           ? ` · ${graph.calls.slice(0, 4).join(", ")}`
                           : ""}
