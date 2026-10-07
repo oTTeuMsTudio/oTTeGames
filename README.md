@@ -4,6 +4,8 @@ Game center for the oTTeGames studio: store, library, an in-app AI concierge, an
 
 The book lives at `/book`. Its left menu is generated from `web/src/data/blueprint-book.json` (parts, chapters, and one page per Blueprint). The PDF is `web/public/books/adventure-artist-blueprint-book.pdf`. Regenerate the catalog with `web/scripts/build_book_catalog.py` after a fresh editor dump.
 
+The top-down tutorial lives at `/tutorial`. It is generated from the same dump by `web/scripts/build_topdown_tutorial.py`, which also writes the lesson notes under `Docs/FirstTenMillion`.
+
 The Next.js app lives in `web/`. The Unreal Windows package in `Packaged/` stays local and is not committed.
 
 ## Local

@@ -5,6 +5,7 @@ import {
   type UIMessage,
 } from "ai";
 import { bookFacts } from "@/lib/book";
+import { tutorialFacts } from "@/lib/tutorial";
 
 export const maxDuration = 30;
 
@@ -16,8 +17,11 @@ Studio facts:
 - FGIU is a playable Windows build with floating-island platforming.
 - Studio Lab is a coming-soon holding bay for prototypes, not a playable game.
 - Adventure Artist is a readable Blueprint Book on this site, not a downloadable game build.
+- First Ten Million is a top-down tutorial at /tutorial. It is a reading path, not a downloadable build.
 
 ${bookFacts()}
+
+${tutorialFacts()}
 
 Be concise, practical, and friendly. Help players pick a game, explain FGIU, and explain the Blueprint Book using only the facts above. Point them to Library, Downloads, News, Community, Support, or /book. If you do not know something, say so instead of inventing patch notes, prices, or Blueprint details the dump left blank.`;
 

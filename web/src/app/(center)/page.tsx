@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { featuredNodeFigures, searchBook } from "@/lib/book";
 import { featuredGame, games } from "@/lib/games";
+import { searchTutorial } from "@/lib/tutorial";
 
 export default async function StorePage({
   searchParams,
@@ -22,6 +23,7 @@ export default async function StorePage({
       )
     : games;
   const bookHits = query ? searchBook(query) : [];
+  const tutorialHits = query ? searchTutorial(query) : [];
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8 p-6">
@@ -75,6 +77,21 @@ export default async function StorePage({
       )}
 
       {query ? null : (
+        <section className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-white px-4 py-4">
+          <div>
+            <p className="text-sm font-medium">First Ten Million, top-down</p>
+            <p className="text-sm text-muted-foreground">
+              Fourteen lessons that turn the Designer and Art Pass graphs into a
+              top-down puzzle adventure.
+            </p>
+          </div>
+          <Button asChild variant="outline">
+            <Link href="/tutorial">Open the tutorial</Link>
+          </Button>
+        </section>
+      )}
+
+      {query ? null : (
         <section className="space-y-4">
           <div>
             <h2 className="font-heading text-xl font-medium">Blueprint nodes</h2>
@@ -106,6 +123,25 @@ export default async function StorePage({
           </div>
         )}
       </section>
+
+      {tutorialHits.length > 0 ? (
+        <section className="space-y-3">
+          <h2 className="font-heading text-xl font-medium">In the tutorial</h2>
+          <ul className="flex flex-col gap-2">
+            {tutorialHits.map((hit) => (
+              <li key={hit.href + hit.title}>
+                <Link
+                  href={hit.href}
+                  className="block rounded-xl border border-border bg-card px-4 py-3 hover:border-brand/50"
+                >
+                  <p className="text-sm font-medium">{hit.title}</p>
+                  <p className="text-xs text-muted-foreground">{hit.detail}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       {bookHits.length > 0 ? (
         <section className="space-y-3">

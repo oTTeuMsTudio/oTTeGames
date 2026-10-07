@@ -45,7 +45,11 @@ export function GameCenterShell({ children }: { children: React.ReactNode }) {
           <div className="ml-auto flex min-w-0 items-center gap-2">
             <form action="/" className="relative hidden min-w-40 max-w-72 flex-1 sm:block">
               <Search className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
-              <Input name="q" placeholder="Search games and the book" className="pl-8" />
+              <Input
+                name="q"
+                placeholder="Search games, the book, and the tutorial"
+                className="pl-8"
+              />
             </form>
             <Button
               type="button"

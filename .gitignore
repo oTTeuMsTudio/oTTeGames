@@ -11,4 +11,6 @@ web/.vercel
 web/.screenshots/
 .DS_Store
 *.log
+__pycache__/
+*.pyc
 
