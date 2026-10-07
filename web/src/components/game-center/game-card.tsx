@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import type { Game } from "@/lib/games";
+import { statusLabel, type Game } from "@/lib/games";
 
 export function GameCard({ game }: { game: Game }) {
   return (
@@ -20,8 +20,8 @@ export function GameCard({ game }: { game: Game }) {
         <div className="space-y-2 p-4">
           <div className="flex items-start justify-between gap-2">
             <h3 className="font-heading text-base font-medium">{game.title}</h3>
-            <Badge variant={game.status === "playable" ? "default" : "secondary"}>
-              {game.status === "playable" ? "Playable" : "Soon"}
+            <Badge variant={game.status === "coming-soon" ? "secondary" : "default"}>
+              {statusLabel(game.status, true)}
             </Badge>
           </div>
           <p className="text-sm text-muted-foreground">{game.tagline}</p>

@@ -10,8 +10,8 @@ import { Textarea } from "@/components/ui/textarea";
 
 const suggestions = [
   "What can I play right now?",
-  "Tell me about FGIU",
-  "How do I install a Windows build?",
+  "Explain the Blueprint Book",
+  "Where do I start in Adventure Artist?",
 ];
 
 export function AiBot() {
@@ -48,7 +48,7 @@ export function AiBot() {
           {messages.length === 0 ? (
             <div className="space-y-3">
               <p className="text-sm text-muted-foreground">
-                Ask about FGIU, your library, or what to play next.
+                Ask about FGIU, the Blueprint Book, or what to open next.
               </p>
               <div className="flex flex-col gap-2">
                 {suggestions.map((prompt) => (

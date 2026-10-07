@@ -5,6 +5,11 @@ export const metadata: Metadata = { title: "News" };
 
 const posts = [
   {
+    title: "Adventure Artist Blueprint Book is on the site",
+    date: "7 October 2026",
+    body: "All 77 Blueprints are in the game center. The left menu follows the book: the adventure, the template and prototypes, then the arena shooter. The PDF is on Downloads.",
+  },
+  {
     title: "FGIU Windows build is in the center",
     date: "September 2026",
     body: "The packaged Unreal 5.8 platformer now has a store page, library slot, and a studio bot that can answer questions about it.",

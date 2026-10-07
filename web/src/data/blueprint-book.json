@@ -1,0 +1,2633 @@
+{
+  "title": "Adventure Artist",
+  "subtitle": "The Blueprint Book",
+  "dated": "7 October 2026",
+  "pdf": "/books/adventure-artist-blueprint-book.pdf",
+  "preface": [
+    "Adventure Artist contains three layers of Blueprint work. The adventure itself is under AdventureGame: a first-person player, keys, switches, a cube, platforms, fire and spike traps, a level transition, and the screens that end a run. The Artist folder is the art pass of those ideas, plus music, footsteps, a cube spawner, and room logos. Around that work the project still holds Epic's first-person template, a few prototyping actors, the mannequin animation Blueprint, and the Variant Shooter sample.",
+    "On this site the same three layers are the menu. Part I is the adventure, Part II is the template and the prototypes, and Part III is the arena shooter. Each chapter explains the group. Each Blueprint has its own page, and the left menu lists that chapter's Blueprints while you are reading it.",
+    "The pages follow the dump. An event or a function is a graph. The calls named on a page are the function, event, cast, and timeline nodes in that graph. A graph with no nodes is named and left empty. Nothing here fills a blank the dump left empty.",
+    "Parent classes, component trees, variable defaults, widget trees, and enum display names are empty for almost every asset. Variables mentioned on a page are the ones Get and Set nodes name. BP_Keyport did not load. Many control-rig graphs are named and contain no nodes.",
+    "The PDF is the same record, typeset as a book: every graph written out as the steps it runs. These pages are the map of that book."
+  ],
+  "stats": {
+    "records": 81,
+    "blueprints": 77,
+    "graphs": 311,
+    "nodes": 2152,
+    "chapters": 17
+  },
+  "parts": [
+    {
+      "key": "part-1",
+      "title": "Part I. The Adventure",
+      "summary": "The adventure itself. Shared contracts, the player and the enemy, keys, switches, the cube, platforms, traps, the level exit, the screens, and the art-track actors that dress the rooms.",
+      "chapters": [
+        {
+          "slug": "contracts",
+          "title": "Contracts and Shared Functions",
+          "intro": "These assets are the shared language of the adventure. BPI_Interaction is the on/off call used by switches. BPI_PlayerKeys is the call the player answers when a key is collected or when the HUD asks what is held. Enum_KeyType and Struct_KeyData are the key's type and payload. BPL_FPGame holds the functions other Blueprints call: set a key mesh from the key map, find the player, and play a footstep sound. The stored enum names came back as NewEnumerator0. That token is what the pins contain.",
+          "assets": [
+            {
+              "name": "BPI_Interaction",
+              "slug": "bpi-interaction",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Core/BPI_Interaction",
+              "summary": "BPI_Interaction is recorded at /Game/AdventureGame/Designer/Blueprints/Core/BPI_Interaction. The dump has 2 graphs with nodes: fnBPISwitchOn (1 node), fnBPISwitchOff (1 node).",
+              "nodeCount": 2,
+              "graphs": [
+                {
+                  "name": "fnBPISwitchOn",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "fnBPISwitchOff",
+                  "nodes": 1,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BPI_PlayerKeys",
+              "slug": "bpi-playerkeys",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Core/BPI_PlayerKeys",
+              "summary": "BPI_PlayerKeys is recorded at /Game/AdventureGame/Designer/Blueprints/Core/BPI_PlayerKeys. The dump has 2 graphs with nodes: fnBPIAddKey (1 node), fnBPIGetKeys (2 nodes).",
+              "nodeCount": 3,
+              "graphs": [
+                {
+                  "name": "fnBPIAddKey",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "fnBPIGetKeys",
+                  "nodes": 2,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "Enum_KeyType",
+              "slug": "enum-keytype",
+              "kind": "enum",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Core/Enum_KeyType",
+              "summary": "Enum_KeyType is recorded at /Game/AdventureGame/Designer/Blueprints/Core/Enum_KeyType. This user-defined enum is referenced by the key Blueprints. The dump stored no display names. In the graphs the value is NewEnumerator0.",
+              "nodeCount": 0,
+              "graphs": [],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "Struct_KeyData",
+              "slug": "struct-keydata",
+              "kind": "struct",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Core/Struct_KeyData",
+              "summary": "Struct_KeyData is recorded at /Game/AdventureGame/Designer/Blueprints/Core/Struct_KeyData. This user-defined struct is part of the key and weapon data. The dump stored no fields. Graphs that use it pass the struct through as a single value.",
+              "nodeCount": 0,
+              "graphs": [],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BPL_FPGame",
+              "slug": "bpl-fpgame",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Core/BPL_FPGame",
+              "summary": "BPL_FPGame is recorded at /Game/AdventureGame/Designer/Blueprints/Core/BPL_FPGame. The dump has 3 graphs with nodes: fnBPLSetKey (10 nodes), fnBPLFindPlayer (22 nodes), fnBPLPlayFootStepSound (12 nodes). Named steps include For Each Loop, Find, Is Valid, SetStaticMesh, SetMaterial, Line Trace By Channel, Get Actor Location, BreakHitResult.",
+              "nodeCount": 44,
+              "graphs": [
+                {
+                  "name": "fnBPLSetKey",
+                  "nodes": 10,
+                  "calls": [
+                    "For Each Loop",
+                    "Find",
+                    "Is Valid",
+                    "SetStaticMesh",
+                    "SetMaterial"
+                  ]
+                },
+                {
+                  "name": "fnBPLFindPlayer",
+                  "nodes": 22,
+                  "calls": [
+                    "Line Trace By Channel",
+                    "Get Actor Location",
+                    "BreakHitResult",
+                    "Branch",
+                    "Distance (Vector)",
+                    "Is Valid"
+                  ]
+                },
+                {
+                  "name": "fnBPLPlayFootStepSound",
+                  "nodes": 12,
+                  "calls": [
+                    "Line Trace By Channel",
+                    "Get Actor Location",
+                    "BreakHitResult",
+                    "fnGetFootStepSounds",
+                    "PlaySoundAtLocation"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        },
+        {
+          "slug": "player-and-enemy",
+          "title": "The Player and the Enemy",
+          "intro": "BP_AdventureCharacter is the first-person player for the adventure: input, weapons inherited from the shooter sample, keys, damage, and the HUD. BP_Enemy is the opposing character. Both graphs are written in the book in full, including functions whose names are still the editor defaults NewFunction and Test.",
+          "assets": [
+            {
+              "name": "BP_AdventureCharacter",
+              "slug": "bp-adventurecharacter",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Characters/BP_AdventureCharacter",
+              "summary": "BP_AdventureCharacter is recorded at /Game/AdventureGame/Designer/Blueprints/Characters/BP_AdventureCharacter. The dump has 6 graphs with nodes: UserConstructionScript (2 nodes), Is Weapon Already Owned (13 nodes), NewFunction (1 node), EventGraph (175 nodes), Get Weapon Target Location (10 nodes), fnBPIGetKeys (3 nodes). Named steps include Parent: Construction Script, For Each Loop, IsA, Branch, GetGameMode, IncrementTeamScore, Do Once, AddMappingContext.",
+              "nodeCount": 204,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 2,
+                  "calls": [
+                    "Parent: Construction Script"
+                  ]
+                },
+                {
+                  "name": "Is Weapon Already Owned",
+                  "nodes": 13,
+                  "calls": [
+                    "For Each Loop",
+                    "IsA",
+                    "Branch"
+                  ]
+                },
+                {
+                  "name": "NewFunction",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 175,
+                  "calls": [
+                    "GetGameMode",
+                    "IncrementTeamScore",
+                    "Do Once",
+                    "Branch",
+                    "AddMappingContext",
+                    "Cast To PlayerController"
+                  ]
+                },
+                {
+                  "name": "Get Weapon Target Location",
+                  "nodes": 10,
+                  "calls": [
+                    "GetForwardVector",
+                    "Get World Location",
+                    "Line Trace By Channel",
+                    "BreakHitResult",
+                    "SelectVector"
+                  ]
+                },
+                {
+                  "name": "fnBPIGetKeys",
+                  "nodes": 3,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_Enemy",
+              "slug": "bp-enemy",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Characters/BP_Enemy",
+              "summary": "BP_Enemy is recorded at /Game/AdventureGame/Designer/Blueprints/Characters/BP_Enemy. The dump has 3 graphs with nodes: UserConstructionScript (1 node), Test (1 node), EventGraph (59 nodes). Named steps include MoveToPlayer, GetPlayerCharacter, Delay, Branch, ApplyDamage, Destroy Actor.",
+              "nodeCount": 61,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Test",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 59,
+                  "calls": [
+                    "MoveToPlayer",
+                    "GetPlayerCharacter",
+                    "Delay",
+                    "Branch",
+                    "ApplyDamage",
+                    "Destroy Actor"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        },
+        {
+          "slug": "keys",
+          "title": "Keys",
+          "intro": "BP_Key is the pickup. Its construction script asks the function library to dress the mesh from the key map, and its event graph handles what happens when the player overlaps it. BP_Keyport is in the content folder, and the editor dump could not load it.",
+          "assets": [
+            {
+              "name": "BP_Key",
+              "slug": "bp-key",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Key/BP_Key",
+              "summary": "BP_Key is recorded at /Game/AdventureGame/Designer/Blueprints/Key/BP_Key. The dump has 2 graphs with nodes: UserConstructionScript (8 nodes), EventGraph (9 nodes). Named steps include fnBPLSetKey, Does Object Implement Interface, Branch, Delay, Destroy Actor, fnBPIAddKey.",
+              "nodeCount": 17,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 8,
+                  "calls": [
+                    "fnBPLSetKey"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 9,
+                  "calls": [
+                    "Does Object Implement Interface",
+                    "Branch",
+                    "Delay",
+                    "Destroy Actor",
+                    "fnBPIAddKey"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_Keyport",
+              "slug": "bp-keyport",
+              "kind": "error",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Key/BP_Keyport",
+              "summary": "BP_Keyport is recorded at /Game/AdventureGame/Designer/Blueprints/Key/BP_Keyport. The editor dump could not load this Blueprint. The recorded error is: load_asset returned None.",
+              "nodeCount": 0,
+              "graphs": [],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        },
+        {
+          "slug": "switches-and-the-cube",
+          "title": "Switches and the Cube",
+          "intro": "BP_Switch is the overlap switch. The construction script paints it with the off material. The event graph paints the on material and sends fnBPISwitchOn and fnBPISwitchOff to the actors in InteractObjectList. BP_Cube is the cube those systems spawn and move.",
+          "assets": [
+            {
+              "name": "BP_Switch",
+              "slug": "bp-switch",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Activation/BP_Switch",
+              "summary": "BP_Switch is recorded at /Game/AdventureGame/Designer/Blueprints/Activation/BP_Switch. The dump has 2 graphs with nodes: UserConstructionScript (4 nodes), EventGraph (20 nodes). Named steps include SetMaterial, Branch, GetOverlappingActors, For Each Loop, fnBPISwitchOn, fnBPISwitchOff.",
+              "nodeCount": 24,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 4,
+                  "calls": [
+                    "SetMaterial"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 20,
+                  "calls": [
+                    "SetMaterial",
+                    "Branch",
+                    "GetOverlappingActors",
+                    "For Each Loop",
+                    "fnBPISwitchOn",
+                    "fnBPISwitchOff"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_Cube",
+              "slug": "bp-cube",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Activation/BP_Cube",
+              "summary": "BP_Cube is recorded at /Game/AdventureGame/Designer/Blueprints/Activation/BP_Cube. The dump has 2 graphs with nodes: UserConstructionScript (1 node), EventGraph (3 nodes).",
+              "nodeCount": 4,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 3,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        },
+        {
+          "slug": "platforms",
+          "title": "Platforms",
+          "intro": "BP_Platform moves its mesh on the timeline TM_MovePlatform between a start location and a target point. fnBPISwitchOn and fnBPISwitchOff start and stop that motion. BP_Platform_Dot is the companion platform Blueprint.",
+          "assets": [
+            {
+              "name": "BP_Platform",
+              "slug": "bp-platform",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Platforms/BP_Platform",
+              "summary": "BP_Platform is recorded at /Game/AdventureGame/Designer/Blueprints/Platforms/BP_Platform. The dump has 2 graphs with nodes: UserConstructionScript (1 node), EventGraph (38 nodes). Named steps include Get Actor Location, evMoveForward, evMoveBackward, evStop, Branch, TM_MovePlatform.",
+              "nodeCount": 39,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 38,
+                  "calls": [
+                    "Get Actor Location",
+                    "evMoveForward",
+                    "evMoveBackward",
+                    "evStop",
+                    "Branch",
+                    "TM_MovePlatform"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_Platform_Dot",
+              "slug": "bp-platform-dot",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Platforms/BP_Platform_Dot",
+              "summary": "BP_Platform_Dot is recorded at /Game/AdventureGame/Designer/Blueprints/Platforms/BP_Platform_Dot. The dump has 2 graphs with nodes: UserConstructionScript (2 nodes), EventGraph (4 nodes). Named steps include Parent: Construction Script, Parent: BeginPlay.",
+              "nodeCount": 6,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 2,
+                  "calls": [
+                    "Parent: Construction Script"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 4,
+                  "calls": [
+                    "Parent: BeginPlay"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        },
+        {
+          "slug": "traps",
+          "title": "Traps",
+          "intro": "BP_TrapBase holds the shared damage call, fnApplyDamageToTarget. BP_TrapFire and BP_TrapSpikes are the two traps built on that idea. Where a child only calls the parent, that is the whole graph.",
+          "assets": [
+            {
+              "name": "BP_TrapBase",
+              "slug": "bp-trapbase",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Traps/BP_TrapBase",
+              "summary": "BP_TrapBase is recorded at /Game/AdventureGame/Designer/Blueprints/Traps/BP_TrapBase. The dump has 3 graphs with nodes: UserConstructionScript (1 node), fnApplyDamageToTarget (8 nodes), EventGraph (15 nodes). Named steps include Branch, For Each Loop, GetOverlappingActors, ApplyDamage, Set Timer by Function Name, Pause Timer by Handle, fnApplyDamageToTarget, Unpause Timer by Handle.",
+              "nodeCount": 24,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "fnApplyDamageToTarget",
+                  "nodes": 8,
+                  "calls": [
+                    "Branch",
+                    "For Each Loop",
+                    "GetOverlappingActors",
+                    "ApplyDamage"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 15,
+                  "calls": [
+                    "Branch",
+                    "Set Timer by Function Name",
+                    "Pause Timer by Handle",
+                    "fnApplyDamageToTarget",
+                    "Unpause Timer by Handle"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_TrapFire",
+              "slug": "bp-trapfire",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Traps/BP_TrapFire",
+              "summary": "BP_TrapFire is recorded at /Game/AdventureGame/Designer/Blueprints/Traps/BP_TrapFire. The dump has 2 graphs with nodes: UserConstructionScript (2 nodes), EventGraph (14 nodes). Named steps include Parent: Construction Script, Parent: BeginPlay, SetMaterial.",
+              "nodeCount": 16,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 2,
+                  "calls": [
+                    "Parent: Construction Script"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 14,
+                  "calls": [
+                    "Parent: BeginPlay",
+                    "SetMaterial"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_TrapSpikes",
+              "slug": "bp-trapspikes",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Traps/BP_TrapSpikes",
+              "summary": "BP_TrapSpikes is recorded at /Game/AdventureGame/Designer/Blueprints/Traps/BP_TrapSpikes. The dump has 2 graphs with nodes: UserConstructionScript (2 nodes), EventGraph (4 nodes). Named steps include Parent: Construction Script, Parent: BeginPlay.",
+              "nodeCount": 6,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 2,
+                  "calls": [
+                    "Parent: Construction Script"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 4,
+                  "calls": [
+                    "Parent: BeginPlay"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        },
+        {
+          "slug": "leaving-the-level",
+          "title": "Leaving the Level",
+          "intro": "BP_LevelTransition is the Blueprint that changes level. Its event graph is the whole of its logic.",
+          "assets": [
+            {
+              "name": "BP_LevelTransition",
+              "slug": "bp-leveltransition",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/LevelTransition/BP_LevelTransition",
+              "summary": "BP_LevelTransition is recorded at /Game/AdventureGame/Designer/Blueprints/LevelTransition/BP_LevelTransition. The dump has 2 graphs with nodes: UserConstructionScript (1 node), EventGraph (30 nodes). Named steps include fnBPIGetKeys, For Each Loop with Break, Branch, DisableInput, GetPlayerController, AddToViewport.",
+              "nodeCount": 31,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 30,
+                  "calls": [
+                    "fnBPIGetKeys",
+                    "For Each Loop with Break",
+                    "Branch",
+                    "DisableInput",
+                    "GetPlayerController",
+                    "AddToViewport"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        },
+        {
+          "slug": "screens",
+          "title": "Screens",
+          "intro": "WBP_PlayerHUD is the in-game widget. It exposes fnAddKeyHUD and fnSetHP. WBP_WinScreen and WBP_EliminatedScreen are the end-of-run widgets. The dump did not record their widget trees, so these pages are the graph logic only.",
+          "assets": [
+            {
+              "name": "WBP_PlayerHUD",
+              "slug": "wbp-playerhud",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Widgets/WBP_PlayerHUD",
+              "summary": "WBP_PlayerHUD is recorded at /Game/AdventureGame/Designer/Blueprints/Widgets/WBP_PlayerHUD. The dump has 3 graphs with nodes: fnAddKeyHUD (16 nodes), fnSetHP (4 nodes), EventGraph (3 nodes). Named steps include For Each Loop, SetText (Multi-Line Text Box), To Text (String), SetText (Text), To Text (Float).",
+              "nodeCount": 23,
+              "graphs": [
+                {
+                  "name": "fnAddKeyHUD",
+                  "nodes": 16,
+                  "calls": [
+                    "For Each Loop",
+                    "SetText (Multi-Line Text Box)",
+                    "To Text (String)"
+                  ]
+                },
+                {
+                  "name": "fnSetHP",
+                  "nodes": 4,
+                  "calls": [
+                    "SetText (Text)",
+                    "To Text (Float)"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 3,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "WBP_WinScreen",
+              "slug": "wbp-winscreen",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Widgets/WBP_WinScreen",
+              "summary": "WBP_WinScreen is recorded at /Game/AdventureGame/Designer/Blueprints/Widgets/WBP_WinScreen. The dump has 1 graph with nodes: EventGraph (3 nodes).",
+              "nodeCount": 3,
+              "graphs": [
+                {
+                  "name": "EventGraph",
+                  "nodes": 3,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "WBP_EliminatedScreen",
+              "slug": "wbp-eliminatedscreen",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Designer/Blueprints/Widgets/WBP_EliminatedScreen",
+              "summary": "WBP_EliminatedScreen is recorded at /Game/AdventureGame/Designer/Blueprints/Widgets/WBP_EliminatedScreen. The dump has 1 graph with nodes: EventGraph (3 nodes).",
+              "nodeCount": 3,
+              "graphs": [
+                {
+                  "name": "EventGraph",
+                  "nodes": 3,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        },
+        {
+          "slug": "the-art-track",
+          "title": "The Art Track",
+          "intro": "The Artist folder repeats the gameplay actors for the art pass and adds the pieces that dress a room. BP_Switch_ArtTrack, BP_TrapFire_ArtTrack, and BP_TrapSpikes_ArtTrack sit beside the designer versions. BP_CubeSpawn creates cubes. BP_BGM plays the music. BP_DA_Footsteps chooses a footstep sound. BP_RoomLogo, BP_00, BP_02, and BP_03 are the room marks.",
+          "assets": [
+            {
+              "name": "BP_Switch_ArtTrack",
+              "slug": "bp-switch-arttrack",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Artist/Blueprints/BP_Switch_ArtTrack",
+              "summary": "BP_Switch_ArtTrack is recorded at /Game/AdventureGame/Artist/Blueprints/BP_Switch_ArtTrack. The dump has 2 graphs with nodes: UserConstructionScript (4 nodes), EventGraph (20 nodes). Named steps include SetMaterial, Branch, GetOverlappingActors, For Each Loop, fnBPISwitchOn, fnBPISwitchOff.",
+              "nodeCount": 24,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 4,
+                  "calls": [
+                    "SetMaterial"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 20,
+                  "calls": [
+                    "SetMaterial",
+                    "Branch",
+                    "GetOverlappingActors",
+                    "For Each Loop",
+                    "fnBPISwitchOn",
+                    "fnBPISwitchOff"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_TrapFire_ArtTrack",
+              "slug": "bp-trapfire-arttrack",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Artist/Blueprints/BP_TrapFire_ArtTrack",
+              "summary": "BP_TrapFire_ArtTrack is recorded at /Game/AdventureGame/Artist/Blueprints/BP_TrapFire_ArtTrack. The dump has 2 graphs with nodes: UserConstructionScript (5 nodes), EventGraph (18 nodes). Named steps include Parent: Construction Script, Set Niagara Variable By String (Float), SetMaterial, Stop, Play, Deactivate, Activate.",
+              "nodeCount": 23,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 5,
+                  "calls": [
+                    "Parent: Construction Script",
+                    "Set Niagara Variable By String (Float)"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 18,
+                  "calls": [
+                    "SetMaterial",
+                    "Stop",
+                    "Play",
+                    "Deactivate",
+                    "Activate"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_TrapSpikes_ArtTrack",
+              "slug": "bp-trapspikes-arttrack",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Artist/Blueprints/BP_TrapSpikes_ArtTrack",
+              "summary": "BP_TrapSpikes_ArtTrack is recorded at /Game/AdventureGame/Artist/Blueprints/BP_TrapSpikes_ArtTrack. The dump has 2 graphs with nodes: UserConstructionScript (8 nodes), EventGraph (4 nodes). Named steps include Parent: Construction Script, SetMaterial, Parent: BeginPlay.",
+              "nodeCount": 12,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 8,
+                  "calls": [
+                    "Parent: Construction Script",
+                    "SetMaterial"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 4,
+                  "calls": [
+                    "Parent: BeginPlay"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_CubeSpawn",
+              "slug": "bp-cubespawn",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Artist/Blueprints/BP_CubeSpawn",
+              "summary": "BP_CubeSpawn is recorded at /Game/AdventureGame/Artist/Blueprints/BP_CubeSpawn. The dump has 2 graphs with nodes: UserConstructionScript (1 node), EventGraph (26 nodes). Named steps include SpawnActor BP Cube, Branch, Increment Int, EvResetSpawn, Destroy Actor, Delay.",
+              "nodeCount": 27,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 26,
+                  "calls": [
+                    "SpawnActor BP Cube",
+                    "Branch",
+                    "Increment Int",
+                    "EvResetSpawn",
+                    "Destroy Actor",
+                    "Delay"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_BGM",
+              "slug": "bp-bgm",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Artist/Blueprints/BP_BGM",
+              "summary": "BP_BGM is recorded at /Game/AdventureGame/Artist/Blueprints/BP_BGM. The dump has 2 graphs with nodes: UserConstructionScript (1 node), EventGraph (5 nodes). Named steps include Branch, PlaySound2D.",
+              "nodeCount": 6,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 5,
+                  "calls": [
+                    "Branch",
+                    "PlaySound2D"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_DA_Footsteps",
+              "slug": "bp-da-footsteps",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Artist/Audio/Footsteps/BP_DA_Footsteps",
+              "summary": "BP_DA_Footsteps is recorded at /Game/AdventureGame/Artist/Audio/Footsteps/BP_DA_Footsteps. The dump has 1 graph with nodes: fnGetFootStepSounds (8 nodes). Named steps include Find, Branch. 1 more graphs are named and have no nodes.",
+              "nodeCount": 8,
+              "graphs": [
+                {
+                  "name": "fnGetFootStepSounds",
+                  "nodes": 8,
+                  "calls": [
+                    "Find",
+                    "Branch"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 1,
+              "emptyGraphNames": [
+                "EventGraph"
+              ]
+            },
+            {
+              "name": "BP_RoomLogo",
+              "slug": "bp-roomlogo",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Artist/Blueprints/Logos/BP_RoomLogo",
+              "summary": "BP_RoomLogo is recorded at /Game/AdventureGame/Artist/Blueprints/Logos/BP_RoomLogo. The dump has 2 graphs with nodes: UserConstructionScript (1 node), EventGraph (3 nodes).",
+              "nodeCount": 4,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 3,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_00",
+              "slug": "bp-00",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Artist/Blueprints/Logos/BP_00",
+              "summary": "BP_00 is recorded at /Game/AdventureGame/Artist/Blueprints/Logos/BP_00. The dump has 2 graphs with nodes: UserConstructionScript (1 node), EventGraph (3 nodes).",
+              "nodeCount": 4,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 3,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_02",
+              "slug": "bp-02",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Artist/Blueprints/Logos/BP_02",
+              "summary": "BP_02 is recorded at /Game/AdventureGame/Artist/Blueprints/Logos/BP_02. The dump has 2 graphs with nodes: UserConstructionScript (1 node), EventGraph (3 nodes).",
+              "nodeCount": 4,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 3,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_03",
+              "slug": "bp-03",
+              "kind": "blueprint",
+              "package": "/Game/AdventureGame/Artist/Blueprints/Logos/BP_03",
+              "summary": "BP_03 is recorded at /Game/AdventureGame/Artist/Blueprints/Logos/BP_03. The dump has 2 graphs with nodes: UserConstructionScript (1 node), EventGraph (3 nodes).",
+              "nodeCount": 4,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 3,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "part-2",
+      "title": "Part II. Templates and Prototypes",
+      "summary": "Epic's first-person template, the touch controls, three prototyping actors, and the mannequin animation Blueprint. They are still in the project beside the adventure.",
+      "chapters": [
+        {
+          "slug": "first-person-template",
+          "title": "The First Person Template",
+          "intro": "These are Epic's first-person template assets, still in the project beside the adventure. BP_FirstPersonCharacter moves and aims. The controller, camera manager, and game mode are the rest of that pawn. ABP_FP_Copy and CtrlRig_FPWarp are its animation assets.",
+          "assets": [
+            {
+              "name": "BP_FirstPersonCharacter",
+              "slug": "bp-firstpersoncharacter",
+              "kind": "blueprint",
+              "package": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter",
+              "summary": "BP_FirstPersonCharacter is recorded at /Game/FirstPerson/Blueprints/BP_FirstPersonCharacter. The dump has 4 graphs with nodes: UserConstructionScript (1 node), Move (9 nodes), Aim (5 nodes), EventGraph (26 nodes). Named steps include AddMovementInput, GetActorForwardVector, GetActorRightVector, AddControllerPitchInput, AddControllerYawInput, Jump, StopJumping, Move.",
+              "nodeCount": 41,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Move",
+                  "nodes": 9,
+                  "calls": [
+                    "AddMovementInput",
+                    "GetActorForwardVector",
+                    "GetActorRightVector"
+                  ]
+                },
+                {
+                  "name": "Aim",
+                  "nodes": 5,
+                  "calls": [
+                    "AddControllerPitchInput",
+                    "AddControllerYawInput"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 26,
+                  "calls": [
+                    "Jump",
+                    "StopJumping",
+                    "Move",
+                    "Aim",
+                    "GetPlatformName",
+                    "AddToPlayerScreen"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_FirstPersonPlayerController",
+              "slug": "bp-firstpersonplayercontroller",
+              "kind": "blueprint",
+              "package": "/Game/FirstPerson/Blueprints/BP_FirstPersonPlayerController",
+              "summary": "BP_FirstPersonPlayerController is recorded at /Game/FirstPerson/Blueprints/BP_FirstPersonPlayerController. The dump has 2 graphs with nodes: UserConstructionScript (1 node), EventGraph (5 nodes). Named steps include AddMappingContext, Is Valid.",
+              "nodeCount": 6,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 5,
+                  "calls": [
+                    "AddMappingContext",
+                    "Is Valid"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_FP_CameraManager",
+              "slug": "bp-fp-cameramanager",
+              "kind": "blueprint",
+              "package": "/Game/FirstPerson/Blueprints/BP_FP_CameraManager",
+              "summary": "BP_FP_CameraManager is recorded at /Game/FirstPerson/Blueprints/BP_FP_CameraManager. The dump has 1 graph with nodes: UserConstructionScript (1 node). 1 more graphs are named and have no nodes.",
+              "nodeCount": 1,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 1,
+              "emptyGraphNames": [
+                "EventGraph"
+              ]
+            },
+            {
+              "name": "GM_FirstPerson",
+              "slug": "gm-firstperson",
+              "kind": "blueprint",
+              "package": "/Game/FirstPerson/Blueprints/GM_FirstPerson",
+              "summary": "GM_FirstPerson is recorded at /Game/FirstPerson/Blueprints/GM_FirstPerson. The dump has 1 graph with nodes: UserConstructionScript (1 node). 1 more graphs are named and have no nodes.",
+              "nodeCount": 1,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 1,
+              "emptyGraphNames": [
+                "EventGraph"
+              ]
+            },
+            {
+              "name": "ABP_FP_Copy",
+              "slug": "abp-fp-copy",
+              "kind": "blueprint",
+              "package": "/Game/FirstPerson/Anims/ABP_FP_Copy",
+              "summary": "ABP_FP_Copy is recorded at /Game/FirstPerson/Anims/ABP_FP_Copy. The dump has 2 graphs with nodes: AnimGraph (3 nodes), EventGraph (2 nodes). Named steps include TryGetPawnOwner.",
+              "nodeCount": 5,
+              "graphs": [
+                {
+                  "name": "AnimGraph",
+                  "nodes": 3,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 2,
+                  "calls": [
+                    "TryGetPawnOwner"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "CtrlRig_FPWarp",
+              "slug": "ctrlrig-fpwarp",
+              "kind": "blueprint",
+              "package": "/Game/FirstPerson/Anims/CtrlRig_FPWarp",
+              "summary": "CtrlRig_FPWarp is recorded at /Game/FirstPerson/Anims/CtrlRig_FPWarp. 1 graphs are named and have no nodes in the dump: Rig.",
+              "nodeCount": 0,
+              "graphs": [],
+              "emptyGraphCount": 1,
+              "emptyGraphNames": [
+                "Rig"
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "touch-controls",
+          "title": "Touch Controls",
+          "intro": "BPI_TouchInterface declares the thumbstick and jump messages. UI_Thumbstick is the stick widget, and UI_TouchSimple is the simple touch HUD that binds it.",
+          "assets": [
+            {
+              "name": "BPI_TouchInterface",
+              "slug": "bpi-touchinterface",
+              "kind": "blueprint",
+              "package": "/Game/Input/Touch/BPI_TouchInterface",
+              "summary": "BPI_TouchInterface is recorded at /Game/Input/Touch/BPI_TouchInterface. The dump has 4 graphs with nodes: Primary Thumbstick (1 node), Secondary Thumbstick (1 node), Touch Jump Start (1 node), Touch Jump End (1 node).",
+              "nodeCount": 4,
+              "graphs": [
+                {
+                  "name": "Primary Thumbstick",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Secondary Thumbstick",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Touch Jump Start",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Touch Jump End",
+                  "nodes": 1,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "UI_Thumbstick",
+              "slug": "ui-thumbstick",
+              "kind": "blueprint",
+              "package": "/Game/Input/Touch/UI_Thumbstick",
+              "summary": "UI_Thumbstick is recorded at /Game/Input/Touch/UI_Thumbstick. The dump has 3 graphs with nodes: Touch Input Check (13 nodes), EventGraph (52 nodes), Stick Input (1 node). Named steps include GetPlayerController, Distance2D, GetInputTouchState, Branch, SetRenderTranslation, Clamp (Float), SelectFloat.",
+              "nodeCount": 66,
+              "graphs": [
+                {
+                  "name": "Touch Input Check",
+                  "nodes": 13,
+                  "calls": [
+                    "GetPlayerController",
+                    "Distance2D",
+                    "GetInputTouchState",
+                    "Branch"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 52,
+                  "calls": [
+                    "Branch",
+                    "GetInputTouchState",
+                    "GetPlayerController",
+                    "SetRenderTranslation",
+                    "Clamp (Float)",
+                    "SelectFloat"
+                  ]
+                },
+                {
+                  "name": "Stick Input",
+                  "nodes": 1,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "UI_TouchSimple",
+              "slug": "ui-touchsimple",
+              "kind": "blueprint",
+              "package": "/Game/Input/Touch/UI_TouchSimple",
+              "summary": "UI_TouchSimple is recorded at /Game/Input/Touch/UI_TouchSimple. The dump has 1 graph with nodes: EventGraph (21 nodes). Named steps include CustomEvent_0, RemoveFromParent, GetOwningPlayer, Set Input Mode Game And UI, Get Controlled Pawn, Primary Thumbstick.",
+              "nodeCount": 21,
+              "graphs": [
+                {
+                  "name": "EventGraph",
+                  "nodes": 21,
+                  "calls": [
+                    "CustomEvent_0",
+                    "RemoveFromParent",
+                    "GetOwningPlayer",
+                    "Set Input Mode Game And UI",
+                    "Get Controlled Pawn",
+                    "Primary Thumbstick"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        },
+        {
+          "slug": "prototype-actors",
+          "title": "Prototype Actors",
+          "intro": "The Level Prototyping folder supplies three interactable actors. BP_DoorFrame builds a door from frame meshes and checks keys. BP_JumpPad launches whoever overlaps it. BP_WobbleTarget is the practice target.",
+          "assets": [
+            {
+              "name": "BP_DoorFrame",
+              "slug": "bp-doorframe",
+              "kind": "blueprint",
+              "package": "/Game/LevelPrototyping/Interactable/Door/BP_DoorFrame",
+              "summary": "BP_DoorFrame is recorded at /Game/LevelPrototyping/Interactable/Door/BP_DoorFrame. The dump has 4 graphs with nodes: UserConstructionScript (108 nodes), Set Mesh (10 nodes), FnHasKey (9 nodes), EventGraph (46 nodes). Named steps include MakeTransform, BreakVector, Absolute (Float), MakeVector, Branch, SetBoxExtent, SetMaterial, Is Valid.",
+              "nodeCount": 173,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 108,
+                  "calls": [
+                    "MakeTransform",
+                    "BreakVector",
+                    "Absolute (Float)",
+                    "MakeVector",
+                    "Branch",
+                    "SetBoxExtent"
+                  ]
+                },
+                {
+                  "name": "Set Mesh",
+                  "nodes": 10,
+                  "calls": [
+                    "SetMaterial",
+                    "Is Valid",
+                    "SetStaticMesh",
+                    "SetMobility"
+                  ]
+                },
+                {
+                  "name": "FnHasKey",
+                  "nodes": 9,
+                  "calls": [
+                    "fnBPIGetKeys"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 46,
+                  "calls": [
+                    "Door Control",
+                    "Set Relative Location",
+                    "Lerp",
+                    "Branch",
+                    "SelectFloat",
+                    "GetOverlappingActors"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_JumpPad",
+              "slug": "bp-jumppad",
+              "kind": "blueprint",
+              "package": "/Game/LevelPrototyping/Interactable/JumpPad/BP_JumpPad",
+              "summary": "BP_JumpPad is recorded at /Game/LevelPrototyping/Interactable/JumpPad/BP_JumpPad. The dump has 2 graphs with nodes: UserConstructionScript (11 nodes), EventGraph (9 nodes). Named steps include Set Niagara Variable (LinearColor), SetLightColor, SetDefaultCustomPrimitiveDataFloat, MakeVector4, BreakColor, SetDefaultCustomPrimitiveDataVector4, Cast To Character, Jump.",
+              "nodeCount": 20,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 11,
+                  "calls": [
+                    "Set Niagara Variable (LinearColor)",
+                    "SetLightColor",
+                    "SetDefaultCustomPrimitiveDataFloat",
+                    "MakeVector4",
+                    "BreakColor",
+                    "SetDefaultCustomPrimitiveDataVector4"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 9,
+                  "calls": [
+                    "Cast To Character",
+                    "Jump"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_WobbleTarget",
+              "slug": "bp-wobbletarget",
+              "kind": "blueprint",
+              "package": "/Game/LevelPrototyping/Interactable/Target/BP_WobbleTarget",
+              "summary": "BP_WobbleTarget is recorded at /Game/LevelPrototyping/Interactable/Target/BP_WobbleTarget. The dump has 2 graphs with nodes: UserConstructionScript (5 nodes), EventGraph (2 nodes). Named steps include SetConstrainedComponents.",
+              "nodeCount": 7,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 5,
+                  "calls": [
+                    "SetConstrainedComponents"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 2,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        },
+        {
+          "slug": "the-mannequin",
+          "title": "The Mannequin",
+          "intro": "ABP_Unarmed is the mannequin locomotion animation Blueprint: idle, walk and run, jump, fall, and land, plus the event graph that drives those states. The three control rigs are in the project. Where a rig graph has nodes, those nodes are listed. Empty rig graphs are named rather than invented.",
+          "assets": [
+            {
+              "name": "ABP_Unarmed",
+              "slug": "abp-unarmed",
+              "kind": "blueprint",
+              "package": "/Game/Characters/Mannequins/Anims/Unarmed/ABP_Unarmed",
+              "summary": "ABP_Unarmed is recorded at /Game/Characters/Mannequins/Anims/Unarmed/ABP_Unarmed. The dump has 16 graphs with nodes. The first are AnimGraph (8 nodes), Idle (2 nodes), Walk / Run (4 nodes), Transition (2 nodes), Transition (3 nodes), Locomotion (2 nodes), Jump (2 nodes), Transition (5 nodes), and 8 more. Named steps include NOT Boolean, GetOwningActor, Cast To Character, Vector Length XY, GetCurrentAcceleration, IsFalling, Dot Product. 2 more graphs are named and have no nodes.",
+              "nodeCount": 85,
+              "graphs": [
+                {
+                  "name": "AnimGraph",
+                  "nodes": 8,
+                  "calls": [
+                    "NOT Boolean"
+                  ]
+                },
+                {
+                  "name": "Idle",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "Walk / Run",
+                  "nodes": 4,
+                  "calls": []
+                },
+                {
+                  "name": "Transition",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "Transition",
+                  "nodes": 3,
+                  "calls": [
+                    "NOT Boolean"
+                  ]
+                },
+                {
+                  "name": "Locomotion",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "Jump",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "Transition",
+                  "nodes": 5,
+                  "calls": []
+                },
+                {
+                  "name": "Fall Loop",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "Transition",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "Transition",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Land",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "Transition",
+                  "nodes": 3,
+                  "calls": [
+                    "NOT Boolean"
+                  ]
+                },
+                {
+                  "name": "Transition",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Transition",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 44,
+                  "calls": [
+                    "GetOwningActor",
+                    "Cast To Character",
+                    "Vector Length XY",
+                    "GetCurrentAcceleration",
+                    "IsFalling",
+                    "Dot Product"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 2,
+              "emptyGraphNames": [
+                "Locomotion",
+                "Main States"
+              ]
+            },
+            {
+              "name": "CR_Mannequin_Body",
+              "slug": "cr-mannequin-body",
+              "kind": "blueprint",
+              "package": "/Game/Characters/Mannequins/Rigs/CR_Mannequin_Body",
+              "summary": "CR_Mannequin_Body is recorded at /Game/Characters/Mannequins/Rigs/CR_Mannequin_Body. 94 graphs are named and have no nodes in the dump: Get Negative Transform, Setup Arm, SequenceExecution_SubGraph, Setup Clavicle, Setup Fingers, Setup Leg, SequenceExecution_SubGraph, Setup Foot and 86 more.",
+              "nodeCount": 0,
+              "graphs": [],
+              "emptyGraphCount": 94,
+              "emptyGraphNames": [
+                "Get Negative Transform",
+                "Setup Arm",
+                "SequenceExecution_SubGraph",
+                "Setup Clavicle",
+                "Setup Fingers",
+                "Setup Leg",
+                "SequenceExecution_SubGraph",
+                "Setup Foot"
+              ]
+            },
+            {
+              "name": "CR_Mannequin_FootIK",
+              "slug": "cr-mannequin-footik",
+              "kind": "blueprint",
+              "package": "/Game/Characters/Mannequins/Rigs/CR_Mannequin_FootIK",
+              "summary": "CR_Mannequin_FootIK is recorded at /Game/Characters/Mannequins/Rigs/CR_Mannequin_FootIK. 2 graphs are named and have no nodes in the dump: FootTrace_SubGraph, Rig.",
+              "nodeCount": 0,
+              "graphs": [],
+              "emptyGraphCount": 2,
+              "emptyGraphNames": [
+                "FootTrace_SubGraph",
+                "Rig"
+              ]
+            },
+            {
+              "name": "CR_Mannequin_Procedural",
+              "slug": "cr-mannequin-procedural",
+              "kind": "blueprint",
+              "package": "/Game/Characters/Mannequins/Rigs/CR_Mannequin_Procedural",
+              "summary": "CR_Mannequin_Procedural is recorded at /Game/Characters/Mannequins/Rigs/CR_Mannequin_Procedural. 1 graphs are named and have no nodes in the dump: Rig Graph.",
+              "nodeCount": 0,
+              "graphs": [],
+              "emptyGraphCount": 1,
+              "emptyGraphNames": [
+                "Rig Graph"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "part-3",
+      "title": "Part III. The Arena Shooter",
+      "summary": "Epic's arena shooter sample, included in this project and partly reused by the adventure character. Player, mode, HUD, weapons, pickups, AI, and weapon animation.",
+      "chapters": [
+        {
+          "slug": "shooter-player",
+          "title": "Shooter Player, Mode, and HUD",
+          "intro": "Variant_Shooter is Epic's arena sample, included in this project and partly reused by the adventure character. This chapter is the player pawn, the player controller, the game mode and its score, the shooter interface, and the HUD widgets, including the touch layout.",
+          "assets": [
+            {
+              "name": "BP_FPShooter",
+              "slug": "bp-fpshooter",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/FirstPerson/BP_FPShooter",
+              "summary": "BP_FPShooter is recorded at /Game/Variant_Shooter/Blueprints/FirstPerson/BP_FPShooter. The dump has 4 graphs with nodes: UserConstructionScript (2 nodes), Is Weapon Already Owned (13 nodes), EventGraph (108 nodes), Get Weapon Target Location (10 nodes). Named steps include Parent: Construction Script, For Each Loop, IsA, Branch, GetGameMode, IncrementTeamScore, Do Once, Destroy Actor.",
+              "nodeCount": 133,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 2,
+                  "calls": [
+                    "Parent: Construction Script"
+                  ]
+                },
+                {
+                  "name": "Is Weapon Already Owned",
+                  "nodes": 13,
+                  "calls": [
+                    "For Each Loop",
+                    "IsA",
+                    "Branch"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 108,
+                  "calls": [
+                    "GetGameMode",
+                    "IncrementTeamScore",
+                    "Do Once",
+                    "Branch",
+                    "Destroy Actor",
+                    "AddMappingContext"
+                  ]
+                },
+                {
+                  "name": "Get Weapon Target Location",
+                  "nodes": 10,
+                  "calls": [
+                    "GetForwardVector",
+                    "Get World Location",
+                    "Line Trace By Channel",
+                    "BreakHitResult",
+                    "SelectVector"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_ShooterController",
+              "slug": "bp-shootercontroller",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/FirstPerson/BP_ShooterController",
+              "summary": "BP_ShooterController is recorded at /Game/Variant_Shooter/Blueprints/FirstPerson/BP_ShooterController. The dump has 2 graphs with nodes: UserConstructionScript (2 nodes), EventGraph (11 nodes). Named steps include Parent: Construction Script, Parent: BeginPlay, OnDestroyed_Event, SpawnActor BP FPShooter, GetAllActorsOfClass, Get Actor Transform, Possess.",
+              "nodeCount": 13,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 2,
+                  "calls": [
+                    "Parent: Construction Script"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 11,
+                  "calls": [
+                    "Parent: BeginPlay",
+                    "OnDestroyed_Event",
+                    "SpawnActor BP FPShooter",
+                    "GetAllActorsOfClass",
+                    "Get Actor Transform",
+                    "Possess"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "GM_Shooter",
+              "slug": "gm-shooter",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/FirstPerson/GM_Shooter",
+              "summary": "GM_Shooter is recorded at /Game/Variant_Shooter/Blueprints/FirstPerson/GM_Shooter. The dump has 4 graphs with nodes: UserConstructionScript (1 node), EventGraph (9 nodes), Score Updated (1 node), GetTeamScore (4 nodes). Named steps include Add, Find, AddToViewport.",
+              "nodeCount": 15,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 9,
+                  "calls": [
+                    "Add",
+                    "Find",
+                    "AddToViewport"
+                  ]
+                },
+                {
+                  "name": "Score Updated",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "GetTeamScore",
+                  "nodes": 4,
+                  "calls": [
+                    "Find"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BPI_Shooter",
+              "slug": "bpi-shooter",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/FirstPerson/BPI_Shooter",
+              "summary": "BPI_Shooter is recorded at /Game/Variant_Shooter/Blueprints/FirstPerson/BPI_Shooter. The dump has 3 graphs with nodes: IncrementTeamScore (1 node), GetTeamScore (2 nodes), Update Bullet UI (1 node).",
+              "nodeCount": 4,
+              "graphs": [
+                {
+                  "name": "IncrementTeamScore",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "GetTeamScore",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "Update Bullet UI",
+                  "nodes": 1,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "HUD_Shooter",
+              "slug": "hud-shooter",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/UI/HUD_Shooter",
+              "summary": "HUD_Shooter is recorded at /Game/Variant_Shooter/UI/HUD_Shooter. The dump has 3 graphs with nodes: UserConstructionScript (1 node), EventGraph (10 nodes), GetTeamScore (2 nodes). Named steps include AddToPlayerScreen, Update Bullet Counter.",
+              "nodeCount": 13,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 10,
+                  "calls": [
+                    "AddToPlayerScreen",
+                    "Update Bullet Counter"
+                  ]
+                },
+                {
+                  "name": "GetTeamScore",
+                  "nodes": 2,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "UI_Overlay",
+              "slug": "ui-overlay",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/UI/UI_Overlay",
+              "summary": "UI_Overlay is recorded at /Game/Variant_Shooter/UI/UI_Overlay. The dump has 1 graph with nodes: EventGraph (12 nodes). Named steps include GetGameMode, Cast To GM_Shooter, GetTeamScore, Get Updated Score, SetText (Text), To Text (Integer).",
+              "nodeCount": 12,
+              "graphs": [
+                {
+                  "name": "EventGraph",
+                  "nodes": 12,
+                  "calls": [
+                    "GetGameMode",
+                    "Cast To GM_Shooter",
+                    "GetTeamScore",
+                    "Get Updated Score",
+                    "SetText (Text)",
+                    "To Text (Integer)"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "UI_WeaponCounter",
+              "slug": "ui-weaponcounter",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/UI/UI_WeaponCounter",
+              "summary": "UI_WeaponCounter is recorded at /Game/Variant_Shooter/UI/UI_WeaponCounter. The dump has 1 graph with nodes: EventGraph (22 nodes). Named steps include Update Bullet Counter, SetVisibility, SetDesiredSizeOverride, SetBrushFromMaterial, SetScalarParameterValue, To Float (Integer).",
+              "nodeCount": 22,
+              "graphs": [
+                {
+                  "name": "EventGraph",
+                  "nodes": 22,
+                  "calls": [
+                    "Update Bullet Counter",
+                    "SetVisibility",
+                    "SetDesiredSizeOverride",
+                    "SetBrushFromMaterial",
+                    "SetScalarParameterValue",
+                    "To Float (Integer)"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BPI_Touch_Shooter",
+              "slug": "bpi-touch-shooter",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Input/BPI_Touch_Shooter",
+              "summary": "BPI_Touch_Shooter is recorded at /Game/Variant_Shooter/Input/BPI_Touch_Shooter. The dump has 3 graphs with nodes: Touch Shoot Start (1 node), Touch Shoot End (1 node), Touch Switch Weapon (1 node).",
+              "nodeCount": 3,
+              "graphs": [
+                {
+                  "name": "Touch Shoot Start",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Touch Shoot End",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Touch Switch Weapon",
+                  "nodes": 1,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "UI_TouchInterface_Shooter",
+              "slug": "ui-touchinterface-shooter",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Input/UI_TouchInterface_Shooter",
+              "summary": "UI_TouchInterface_Shooter is recorded at /Game/Variant_Shooter/Input/UI_TouchInterface_Shooter. The dump has 1 graph with nodes: EventGraph (31 nodes). Named steps include CustomEvent, RemoveFromParent, GetOwningPlayer, Set Input Mode Game And UI, Get Controlled Pawn, Primary Thumbstick.",
+              "nodeCount": 31,
+              "graphs": [
+                {
+                  "name": "EventGraph",
+                  "nodes": 31,
+                  "calls": [
+                    "CustomEvent",
+                    "RemoveFromParent",
+                    "GetOwningPlayer",
+                    "Set Input Mode Game And UI",
+                    "Get Controlled Pawn",
+                    "Primary Thumbstick"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        },
+        {
+          "slug": "weapons-and-pickups",
+          "title": "Weapons and Pickups",
+          "intro": "BPI_Pickups and BPI_WeaponHolder are the contracts between the pawn and a weapon. BP_WeaponBase fires the bullet. The pistol, rifle, and grenade launcher are the three children. BP_FirstPersonProjectile and BP_PistolBullet are the projectiles. BP_Pickup spins in the arena until someone collects it. ST_WeaponTable is the weapon data struct. Its fields were not in the dump.",
+          "assets": [
+            {
+              "name": "BPI_Pickups",
+              "slug": "bpi-pickups",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/Pickups/BPI_Pickups",
+              "summary": "BPI_Pickups is recorded at /Game/Variant_Shooter/Blueprints/Pickups/BPI_Pickups. The dump has 1 graph with nodes: Add Weapon (1 node).",
+              "nodeCount": 1,
+              "graphs": [
+                {
+                  "name": "Add Weapon",
+                  "nodes": 1,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BPI_WeaponHolder",
+              "slug": "bpi-weaponholder",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/Pickups/BPI_WeaponHolder",
+              "summary": "BPI_WeaponHolder is recorded at /Game/Variant_Shooter/Blueprints/Pickups/BPI_WeaponHolder. The dump has 9 graphs with nodes. The first are Attach Weapon Meshes (1 node), Play Firing Montage (1 node), Add Weapon Recoil (1 node), Update Weapon HUD (1 node), Get Weapon Target Location (2 nodes), Add Weapon Class (1 node), On Weapon Activated (1 node), On Weapon Deactivated (1 node), and 1 more.",
+              "nodeCount": 10,
+              "graphs": [
+                {
+                  "name": "Attach Weapon Meshes",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Play Firing Montage",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Add Weapon Recoil",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Update Weapon HUD",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Get Weapon Target Location",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "Add Weapon Class",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "On Weapon Activated",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "On Weapon Deactivated",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "On Semi Weapon Refire",
+                  "nodes": 1,
+                  "calls": []
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_WeaponBase",
+              "slug": "bp-weaponbase",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/Pickups/BP_WeaponBase",
+              "summary": "BP_WeaponBase is recorded at /Game/Variant_Shooter/Blueprints/Pickups/BP_WeaponBase. The dump has 4 graphs with nodes: UserConstructionScript (1 node), Calculate Bullet Spawn Transform (16 nodes), Fire Bullet (30 nodes), EventGraph (72 nodes). Named steps include MakeTransform, GetSocketLocation, FindLookAtRotation, GetForwardVector, RandomUnitVector, SpawnActor, Decrement Int, Branch.",
+              "nodeCount": 119,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Calculate Bullet Spawn Transform",
+                  "nodes": 16,
+                  "calls": [
+                    "MakeTransform",
+                    "GetSocketLocation",
+                    "FindLookAtRotation",
+                    "GetForwardVector",
+                    "RandomUnitVector"
+                  ]
+                },
+                {
+                  "name": "Fire Bullet",
+                  "nodes": 30,
+                  "calls": [
+                    "SpawnActor",
+                    "Decrement Int",
+                    "Branch",
+                    "GetOwner",
+                    "Play Firing Montage",
+                    "Add Weapon Recoil"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 72,
+                  "calls": [
+                    "GetOwner",
+                    "On Weapon Owner Destroyed",
+                    "Destroy Actor",
+                    "Attach Weapon Meshes",
+                    "Start Firing",
+                    "Stop Firing"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_Weapon_Pistol",
+              "slug": "bp-weapon-pistol",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/Pickups/Pistol/BP_Weapon_Pistol",
+              "summary": "BP_Weapon_Pistol is recorded at /Game/Variant_Shooter/Blueprints/Pickups/Pistol/BP_Weapon_Pistol. The dump has 2 graphs with nodes: UserConstructionScript (2 nodes), EventGraph (6 nodes). Named steps include Parent: Construction Script, Parent: BeginPlay, Parent: ActorBeginOverlap, Parent: Tick.",
+              "nodeCount": 8,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 2,
+                  "calls": [
+                    "Parent: Construction Script"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 6,
+                  "calls": [
+                    "Parent: BeginPlay",
+                    "Parent: ActorBeginOverlap",
+                    "Parent: Tick"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_Weapon_Rifle",
+              "slug": "bp-weapon-rifle",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/Pickups/Rifle/BP_Weapon_Rifle",
+              "summary": "BP_Weapon_Rifle is recorded at /Game/Variant_Shooter/Blueprints/Pickups/Rifle/BP_Weapon_Rifle. The dump has 2 graphs with nodes: UserConstructionScript (2 nodes), EventGraph (6 nodes). Named steps include Parent: Construction Script, Parent: BeginPlay, Parent: ActorBeginOverlap, Parent: Tick.",
+              "nodeCount": 8,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 2,
+                  "calls": [
+                    "Parent: Construction Script"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 6,
+                  "calls": [
+                    "Parent: BeginPlay",
+                    "Parent: ActorBeginOverlap",
+                    "Parent: Tick"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_Weapon_GrenadeLauncher",
+              "slug": "bp-weapon-grenadelauncher",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/Pickups/GrenadeLauncher/BP_Weapon_GrenadeLauncher",
+              "summary": "BP_Weapon_GrenadeLauncher is recorded at /Game/Variant_Shooter/Blueprints/Pickups/GrenadeLauncher/BP_Weapon_GrenadeLauncher. The dump has 2 graphs with nodes: UserConstructionScript (2 nodes), EventGraph (6 nodes). Named steps include Parent: Construction Script, Parent: BeginPlay, Parent: ActorBeginOverlap, Parent: Tick.",
+              "nodeCount": 8,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 2,
+                  "calls": [
+                    "Parent: Construction Script"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 6,
+                  "calls": [
+                    "Parent: BeginPlay",
+                    "Parent: ActorBeginOverlap",
+                    "Parent: Tick"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_FirstPersonProjectile",
+              "slug": "bp-firstpersonprojectile",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/Pickups/Projectiles/BP_FirstPersonProjectile",
+              "summary": "BP_FirstPersonProjectile is recorded at /Game/Variant_Shooter/Blueprints/Pickups/Projectiles/BP_FirstPersonProjectile. The dump has 2 graphs with nodes: UserConstructionScript (1 node), EventGraph (30 nodes). Named steps include Destroy Actor, Get Actor Location, AddImpulseAtLocation, GetVelocity, vector * float, IsSimulatingPhysics.",
+              "nodeCount": 31,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 30,
+                  "calls": [
+                    "Destroy Actor",
+                    "Get Actor Location",
+                    "AddImpulseAtLocation",
+                    "GetVelocity",
+                    "vector * float",
+                    "IsSimulatingPhysics"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_PistolBullet",
+              "slug": "bp-pistolbullet",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/Pickups/Projectiles/BP_PistolBullet",
+              "summary": "BP_PistolBullet is recorded at /Game/Variant_Shooter/Blueprints/Pickups/Projectiles/BP_PistolBullet. The dump has 2 graphs with nodes: UserConstructionScript (2 nodes), EventGraph (25 nodes). Named steps include Parent: Construction Script, Parent: BeginPlay, PrintString, SetSimulatePhysics, SetPhysicsLinearVelocity, Parent: Hit, Delay.",
+              "nodeCount": 27,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 2,
+                  "calls": [
+                    "Parent: Construction Script"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 25,
+                  "calls": [
+                    "Parent: BeginPlay",
+                    "PrintString",
+                    "SetSimulatePhysics",
+                    "SetPhysicsLinearVelocity",
+                    "Parent: Hit",
+                    "Delay"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_Pickup",
+              "slug": "bp-pickup",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/Pickups/BP_Pickup",
+              "summary": "BP_Pickup is recorded at /Game/Variant_Shooter/Blueprints/Pickups/BP_Pickup. The dump has 3 graphs with nodes: UserConstructionScript (1 node), Spin (8 nodes), EventGraph (35 nodes). Named steps include Set Relative Transform, Sin (Radians), GetGameTimeInSeconds, Set Timer by Event, Enable Pickup, SpawnIn, SetActorTickEnabled, SetCollisionEnabled.",
+              "nodeCount": 44,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Spin",
+                  "nodes": 8,
+                  "calls": [
+                    "Set Relative Transform",
+                    "Sin (Radians)",
+                    "GetGameTimeInSeconds"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 35,
+                  "calls": [
+                    "Set Timer by Event",
+                    "Enable Pickup",
+                    "SpawnIn",
+                    "SetActorTickEnabled",
+                    "SetCollisionEnabled",
+                    "To Vector (Float)"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "ST_WeaponTable",
+              "slug": "st-weapontable",
+              "kind": "struct",
+              "package": "/Game/Variant_Shooter/Blueprints/Pickups/ST_WeaponTable",
+              "summary": "ST_WeaponTable is recorded at /Game/Variant_Shooter/Blueprints/Pickups/ST_WeaponTable. This user-defined struct is part of the key and weapon data. The dump stored no fields. Graphs that use it pass the struct through as a single value.",
+              "nodeCount": 0,
+              "graphs": [],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        },
+        {
+          "slug": "shooter-ai",
+          "title": "Shooter AI",
+          "intro": "BP_FPShooter_AI is the enemy pawn and BP_AICont is its controller. EnvQueryContext_Target names the query target. The State Tree tasks and the line-of-sight condition cover sensing, facing, shooting, and picking a random float.",
+          "assets": [
+            {
+              "name": "BP_FPShooter_AI",
+              "slug": "bp-fpshooter-ai",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/AI/BP_FPShooter_AI",
+              "summary": "BP_FPShooter_AI is recorded at /Game/Variant_Shooter/Blueprints/AI/BP_FPShooter_AI. The dump has 5 graphs with nodes: UserConstructionScript (2 nodes), Has Weapon (4 nodes), EventGraph (64 nodes), On Death (1 node), Get Weapon Target Location (41 nodes). Named steps include Parent: Construction Script, IsValid, Parent: BeginPlay, SpawnActor, Get Actor Transform, Die, Branch, SetSimulatePhysics.",
+              "nodeCount": 112,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 2,
+                  "calls": [
+                    "Parent: Construction Script"
+                  ]
+                },
+                {
+                  "name": "Has Weapon",
+                  "nodes": 4,
+                  "calls": [
+                    "IsValid"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 64,
+                  "calls": [
+                    "Parent: BeginPlay",
+                    "SpawnActor",
+                    "Get Actor Transform",
+                    "Die",
+                    "Branch",
+                    "SetSimulatePhysics"
+                  ]
+                },
+                {
+                  "name": "On Death",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Get Weapon Target Location",
+                  "nodes": 41,
+                  "calls": [
+                    "Line Trace By Channel",
+                    "BreakHitResult",
+                    "SelectVector",
+                    "Is Valid",
+                    "RandomFloatInRange",
+                    "Normalize"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "BP_AICont",
+              "slug": "bp-aicont",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/AI/BP_AICont",
+              "summary": "BP_AICont is recorded at /Game/Variant_Shooter/Blueprints/AI/BP_AICont. The dump has 3 graphs with nodes: UserConstructionScript (1 node), Construct Bullet Transform (2 nodes), EventGraph (20 nodes). Named steps include Cast To BP_FPShooter_AI, Set Current Target, Clear Current Target, GetPathFollowingComponent, StopActiveMovement, On Death.",
+              "nodeCount": 23,
+              "graphs": [
+                {
+                  "name": "UserConstructionScript",
+                  "nodes": 1,
+                  "calls": []
+                },
+                {
+                  "name": "Construct Bullet Transform",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 20,
+                  "calls": [
+                    "Cast To BP_FPShooter_AI",
+                    "Set Current Target",
+                    "Clear Current Target",
+                    "GetPathFollowingComponent",
+                    "StopActiveMovement",
+                    "On Death"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "EnvQueryContext_Target",
+              "slug": "envquerycontext-target",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/AI/EnvQueryContext_Target",
+              "summary": "EnvQueryContext_Target is recorded at /Game/Variant_Shooter/Blueprints/AI/EnvQueryContext_Target. The dump has 1 graph with nodes: ProvideSingleActor (9 nodes). Named steps include Cast To BP_AICont, Is Valid. 1 more graphs are named and have no nodes.",
+              "nodeCount": 9,
+              "graphs": [
+                {
+                  "name": "ProvideSingleActor",
+                  "nodes": 9,
+                  "calls": [
+                    "Cast To BP_AICont",
+                    "Is Valid"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 1,
+              "emptyGraphNames": [
+                "EventGraph"
+              ]
+            },
+            {
+              "name": "StateTreeTask_SenseEnemies",
+              "slug": "statetreetask-senseenemies",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/AI/StateTreeTask_SenseEnemies",
+              "summary": "StateTreeTask_SenseEnemies is recorded at /Game/Variant_Shooter/Blueprints/AI/StateTreeTask_SenseEnemies. The dump has 2 graphs with nodes: Has Direct Line of Sight to Stimulus (23 nodes), EventGraph (72 nodes). Named steps include Get Actor Location, Normalize, GetActorForwardVector, Dot Product, Cos (Degrees), Branch, On Perception Updated, On Perception Forgotten.",
+              "nodeCount": 95,
+              "graphs": [
+                {
+                  "name": "Has Direct Line of Sight to Stimulus",
+                  "nodes": 23,
+                  "calls": [
+                    "Get Actor Location",
+                    "Normalize",
+                    "GetActorForwardVector",
+                    "Dot Product",
+                    "Cos (Degrees)",
+                    "Branch"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 72,
+                  "calls": [
+                    "Branch",
+                    "On Perception Updated",
+                    "On Perception Forgotten",
+                    "Set Current Target",
+                    "Clear Current Target",
+                    "ActorHasTag"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "StateTreeCondition_HasLineOfSightToTarget",
+              "slug": "statetreecondition-haslineofsighttotarget",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/AI/StateTreeCondition_HasLineOfSightToTarget",
+              "summary": "StateTreeCondition_HasLineOfSightToTarget is recorded at /Game/Variant_Shooter/Blueprints/AI/StateTreeCondition_HasLineOfSightToTarget. The dump has 2 graphs with nodes: ReceiveTestCondition (55 nodes), ReceiveGetDescription (4 nodes). Named steps include Get World Location, Get Actor Bounds, BreakVector, Get Actor Location, Get Unit Direction (Vector), Dot Product, SelectText. 1 more graphs are named and have no nodes.",
+              "nodeCount": 59,
+              "graphs": [
+                {
+                  "name": "ReceiveTestCondition",
+                  "nodes": 55,
+                  "calls": [
+                    "Get World Location",
+                    "Get Actor Bounds",
+                    "BreakVector",
+                    "Get Actor Location",
+                    "Get Unit Direction (Vector)",
+                    "Dot Product"
+                  ]
+                },
+                {
+                  "name": "ReceiveGetDescription",
+                  "nodes": 4,
+                  "calls": [
+                    "SelectText"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 1,
+              "emptyGraphNames": [
+                "EventGraph"
+              ]
+            },
+            {
+              "name": "StateTreeTask_FaceActor",
+              "slug": "statetreetask-faceactor",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/AI/StateTreeTask_FaceActor",
+              "summary": "StateTreeTask_FaceActor is recorded at /Game/Variant_Shooter/Blueprints/AI/StateTreeTask_FaceActor. The dump has 1 graph with nodes: EventGraph (13 nodes). Named steps include Branch, SetFocus, ClearFocus.",
+              "nodeCount": 13,
+              "graphs": [
+                {
+                  "name": "EventGraph",
+                  "nodes": 13,
+                  "calls": [
+                    "Branch",
+                    "SetFocus",
+                    "ClearFocus"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "StateTreeTask_FaceLocation",
+              "slug": "statetreetask-facelocation",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/AI/StateTreeTask_FaceLocation",
+              "summary": "StateTreeTask_FaceLocation is recorded at /Game/Variant_Shooter/Blueprints/AI/StateTreeTask_FaceLocation. The dump has 1 graph with nodes: EventGraph (13 nodes). Named steps include Branch, ClearFocus, SetFocalPoint.",
+              "nodeCount": 13,
+              "graphs": [
+                {
+                  "name": "EventGraph",
+                  "nodes": 13,
+                  "calls": [
+                    "Branch",
+                    "ClearFocus",
+                    "SetFocalPoint"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "StateTreeTask_ShootAtTarget",
+              "slug": "statetreetask-shootattarget",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/AI/StateTreeTask_ShootAtTarget",
+              "summary": "StateTreeTask_ShootAtTarget is recorded at /Game/Variant_Shooter/Blueprints/AI/StateTreeTask_ShootAtTarget. The dump has 2 graphs with nodes: ReceiveGetDescription (2 nodes), EventGraph (13 nodes). Named steps include Branch, Start Shooting, Stop Shooting.",
+              "nodeCount": 15,
+              "graphs": [
+                {
+                  "name": "ReceiveGetDescription",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 13,
+                  "calls": [
+                    "Branch",
+                    "Start Shooting",
+                    "Stop Shooting"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "StateTreeTask_SetRandomFloat",
+              "slug": "statetreetask-setrandomfloat",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/AI/StateTreeTask_SetRandomFloat",
+              "summary": "StateTreeTask_SetRandomFloat is recorded at /Game/Variant_Shooter/Blueprints/AI/StateTreeTask_SetRandomFloat. The dump has 2 graphs with nodes: ReceiveGetDescription (5 nodes), EventGraph (8 nodes). Named steps include Branch, RandomFloatInRange.",
+              "nodeCount": 13,
+              "graphs": [
+                {
+                  "name": "ReceiveGetDescription",
+                  "nodes": 5,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 8,
+                  "calls": [
+                    "Branch",
+                    "RandomFloatInRange"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            }
+          ]
+        },
+        {
+          "slug": "shooter-animation",
+          "title": "Shooter Animation",
+          "intro": "These are the first-person and third-person weapon animation Blueprints, the two hand-adjustment control rigs, and the asset-guidelines Blueprint. The animation Blueprints are pose graphs, state names, and transition conditions, and their event graphs are execution.",
+          "assets": [
+            {
+              "name": "ABP_FP_Pistol",
+              "slug": "abp-fp-pistol",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Anims/ABP_FP_Pistol",
+              "summary": "ABP_FP_Pistol is recorded at /Game/Variant_Shooter/Anims/ABP_FP_Pistol. The dump has 2 graphs with nodes: AnimGraph (8 nodes), EventGraph (46 nodes). Named steps include To Transform (Vector), MakeTransform, TryGetPawnOwner, Vector Length, float > float, GetMovementComponent, IsFalling, Is Valid.",
+              "nodeCount": 54,
+              "graphs": [
+                {
+                  "name": "AnimGraph",
+                  "nodes": 8,
+                  "calls": [
+                    "To Transform (Vector)",
+                    "MakeTransform"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 46,
+                  "calls": [
+                    "TryGetPawnOwner",
+                    "Vector Length",
+                    "float > float",
+                    "GetMovementComponent",
+                    "IsFalling",
+                    "Is Valid"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "ABP_FP_Weapon",
+              "slug": "abp-fp-weapon",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Anims/ABP_FP_Weapon",
+              "summary": "ABP_FP_Weapon is recorded at /Game/Variant_Shooter/Anims/ABP_FP_Weapon. The dump has 2 graphs with nodes: AnimGraph (8 nodes), EventGraph (46 nodes). Named steps include To Transform (Vector), MakeTransform, TryGetPawnOwner, Vector Length, float > float, GetMovementComponent, IsFalling, Is Valid.",
+              "nodeCount": 54,
+              "graphs": [
+                {
+                  "name": "AnimGraph",
+                  "nodes": 8,
+                  "calls": [
+                    "To Transform (Vector)",
+                    "MakeTransform"
+                  ]
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 46,
+                  "calls": [
+                    "TryGetPawnOwner",
+                    "Vector Length",
+                    "float > float",
+                    "GetMovementComponent",
+                    "IsFalling",
+                    "Is Valid"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 0,
+              "emptyGraphNames": []
+            },
+            {
+              "name": "ABP_TP_Pistol",
+              "slug": "abp-tp-pistol",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Anims/ABP_TP_Pistol",
+              "summary": "ABP_TP_Pistol is recorded at /Game/Variant_Shooter/Anims/ABP_TP_Pistol. The dump has 14 graphs with nodes. The first are AnimGraph (6 nodes), FPP_Idle (2 nodes), FPP_JumpStart (2 nodes), FPP_JumpLoop (2 nodes), AnimationTransitionGraph_213 (3 nodes), FPP_JumpEnd (2 nodes), AnimationTransitionGraph_214 (3 nodes), AnimationTransitionGraph_215 (3 nodes), and 6 more. Named steps include float <= float, NOT Boolean, Vector Length, float > float, GetMovementComponent, IsFalling, Is Valid, GetVelocity. 1 more graphs are named and have no nodes.",
+              "nodeCount": 67,
+              "graphs": [
+                {
+                  "name": "AnimGraph",
+                  "nodes": 6,
+                  "calls": []
+                },
+                {
+                  "name": "FPP_Idle",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "FPP_JumpStart",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "FPP_JumpLoop",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "AnimationTransitionGraph_213",
+                  "nodes": 3,
+                  "calls": [
+                    "float <= float"
+                  ]
+                },
+                {
+                  "name": "FPP_JumpEnd",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "AnimationTransitionGraph_214",
+                  "nodes": 3,
+                  "calls": [
+                    "NOT Boolean"
+                  ]
+                },
+                {
+                  "name": "AnimationTransitionGraph_215",
+                  "nodes": 3,
+                  "calls": [
+                    "float <= float"
+                  ]
+                },
+                {
+                  "name": "FPP_Run",
+                  "nodes": 4,
+                  "calls": []
+                },
+                {
+                  "name": "AnimationTransitionGraph_216",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "AnimationTransitionGraph_217",
+                  "nodes": 3,
+                  "calls": [
+                    "NOT Boolean"
+                  ]
+                },
+                {
+                  "name": "AnimationTransitionGraph_218",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "AnimationTransitionGraph_219",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 31,
+                  "calls": [
+                    "Vector Length",
+                    "float > float",
+                    "GetMovementComponent",
+                    "IsFalling",
+                    "Is Valid",
+                    "GetVelocity"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 1,
+              "emptyGraphNames": [
+                "LocomotioStateMachine"
+              ]
+            },
+            {
+              "name": "ABP_TP_Rifle",
+              "slug": "abp-tp-rifle",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Anims/ABP_TP_Rifle",
+              "summary": "ABP_TP_Rifle is recorded at /Game/Variant_Shooter/Anims/ABP_TP_Rifle. The dump has 14 graphs with nodes. The first are AnimGraph (6 nodes), FPP_Idle (2 nodes), FPP_JumpStart (2 nodes), FPP_JumpLoop (2 nodes), AnimationTransitionGraph_213 (3 nodes), FPP_JumpEnd (2 nodes), AnimationTransitionGraph_214 (3 nodes), AnimationTransitionGraph_215 (3 nodes), and 6 more. Named steps include float <= float, NOT Boolean, Vector Length, float > float, GetMovementComponent, IsFalling, Is Valid, GetVelocity. 1 more graphs are named and have no nodes.",
+              "nodeCount": 67,
+              "graphs": [
+                {
+                  "name": "AnimGraph",
+                  "nodes": 6,
+                  "calls": []
+                },
+                {
+                  "name": "FPP_Idle",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "FPP_JumpStart",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "FPP_JumpLoop",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "AnimationTransitionGraph_213",
+                  "nodes": 3,
+                  "calls": [
+                    "float <= float"
+                  ]
+                },
+                {
+                  "name": "FPP_JumpEnd",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "AnimationTransitionGraph_214",
+                  "nodes": 3,
+                  "calls": [
+                    "NOT Boolean"
+                  ]
+                },
+                {
+                  "name": "AnimationTransitionGraph_215",
+                  "nodes": 3,
+                  "calls": [
+                    "float <= float"
+                  ]
+                },
+                {
+                  "name": "FPP_Run",
+                  "nodes": 4,
+                  "calls": []
+                },
+                {
+                  "name": "AnimationTransitionGraph_216",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "AnimationTransitionGraph_217",
+                  "nodes": 3,
+                  "calls": [
+                    "NOT Boolean"
+                  ]
+                },
+                {
+                  "name": "AnimationTransitionGraph_218",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "AnimationTransitionGraph_219",
+                  "nodes": 2,
+                  "calls": []
+                },
+                {
+                  "name": "EventGraph",
+                  "nodes": 31,
+                  "calls": [
+                    "Vector Length",
+                    "float > float",
+                    "GetMovementComponent",
+                    "IsFalling",
+                    "Is Valid",
+                    "GetVelocity"
+                  ]
+                }
+              ],
+              "emptyGraphCount": 1,
+              "emptyGraphNames": [
+                "LocomotioStateMachine"
+              ]
+            },
+            {
+              "name": "Ctrl_HandAdjusment",
+              "slug": "ctrl-handadjusment",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Anims/Ctrl_HandAdjusment",
+              "summary": "Ctrl_HandAdjusment is recorded at /Game/Variant_Shooter/Anims/Ctrl_HandAdjusment. 1 graphs are named and have no nodes in the dump: Rig.",
+              "nodeCount": 0,
+              "graphs": [],
+              "emptyGraphCount": 1,
+              "emptyGraphNames": [
+                "Rig"
+              ]
+            },
+            {
+              "name": "Ctrl_HandAdjusment_Pistol",
+              "slug": "ctrl-handadjusment-pistol",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Anims/Ctrl_HandAdjusment_Pistol",
+              "summary": "Ctrl_HandAdjusment_Pistol is recorded at /Game/Variant_Shooter/Anims/Ctrl_HandAdjusment_Pistol. 1 graphs are named and have no nodes in the dump: Rig.",
+              "nodeCount": 0,
+              "graphs": [],
+              "emptyGraphCount": 1,
+              "emptyGraphNames": [
+                "Rig"
+              ]
+            },
+            {
+              "name": "BP_AssetGuidelines_Shooter",
+              "slug": "bp-assetguidelines-shooter",
+              "kind": "blueprint",
+              "package": "/Game/Variant_Shooter/Blueprints/BP_AssetGuidelines_Shooter",
+              "summary": "BP_AssetGuidelines_Shooter is recorded at /Game/Variant_Shooter/Blueprints/BP_AssetGuidelines_Shooter. 1 graphs are named and have no nodes in the dump: EventGraph.",
+              "nodeCount": 0,
+              "graphs": [],
+              "emptyGraphCount": 1,
+              "emptyGraphNames": [
+                "EventGraph"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

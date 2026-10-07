@@ -18,7 +18,8 @@ export const metadata: Metadata = {
     default: "oTTeGames",
     template: "%s · oTTeGames",
   },
-  description: "The oTTeGames game center — play FGIU and whatever comes next.",
+  description:
+    "The oTTeGames game center — play FGIU, and read the Adventure Artist Blueprint Book.",
 };
 
 export default function RootLayout({

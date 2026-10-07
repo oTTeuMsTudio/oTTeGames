@@ -1,4 +1,5 @@
 import {
+  BookOpen,
   Compass,
   Download,
   Gamepad2,
@@ -23,6 +24,7 @@ export const topNav: NavItem[] = [
   { href: "/community", label: "Community", icon: Users },
   { href: "/news", label: "News", icon: Newspaper },
   { href: "/support", label: "Support", icon: LifeBuoy },
+  { href: "/book", label: "Book", icon: BookOpen },
 ];
 
 export const leftNav: NavItem[] = [

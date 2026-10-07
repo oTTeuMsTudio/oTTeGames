@@ -3,6 +3,7 @@ import Link from "next/link";
 import { GameCard } from "@/components/game-center/game-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { searchBook } from "@/lib/book";
 import { featuredGame, games } from "@/lib/games";
 
 export default async function StorePage({
@@ -14,9 +15,12 @@ export default async function StorePage({
   const query = q?.trim().toLowerCase() ?? "";
   const visible = query
     ? games.filter((game) =>
-        `${game.title} ${game.genre} ${game.tagline}`.toLowerCase().includes(query),
+        `${game.title} ${game.genre} ${game.tagline} ${game.description}`
+          .toLowerCase()
+          .includes(query),
       )
     : games;
+  const bookHits = query ? searchBook(query) : [];
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8 p-6">
@@ -51,6 +55,20 @@ export default async function StorePage({
         </div>
       </section>
 
+      {query ? null : (
+        <section className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-4">
+          <div>
+            <p className="text-sm font-medium">Adventure Artist Blueprint Book</p>
+            <p className="text-sm text-muted-foreground">
+              Every Blueprint in the project, with a menu for each part and chapter.
+            </p>
+          </div>
+          <Button asChild variant="outline">
+            <Link href="/book">Open the book</Link>
+          </Button>
+        </section>
+      )}
+
       <section className="space-y-4">
         <div className="flex items-end justify-between gap-4">
           <div>
@@ -70,6 +88,25 @@ export default async function StorePage({
           </div>
         )}
       </section>
+
+      {bookHits.length > 0 ? (
+        <section className="space-y-3">
+          <h2 className="font-heading text-xl font-medium">In the Blueprint Book</h2>
+          <ul className="flex flex-col gap-2">
+            {bookHits.map((hit) => (
+              <li key={hit.href}>
+                <Link
+                  href={hit.href}
+                  className="block rounded-xl border border-border bg-card px-4 py-3 hover:border-brand/50"
+                >
+                  <p className="text-sm font-medium">{hit.title}</p>
+                  <p className="text-xs text-muted-foreground">{hit.detail}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-export type GameStatus = "playable" | "coming-soon";
+export type GameStatus = "playable" | "coming-soon" | "readable";
 
 export type Game = {
   slug: string;
@@ -12,7 +12,14 @@ export type Game = {
   cover: string;
   hero: string;
   highlights: string[];
+  readHref?: string;
 };
+
+export function statusLabel(status: GameStatus, compact = false) {
+  if (status === "playable") return "Playable";
+  if (status === "readable") return compact ? "Book" : "Blueprint book";
+  return compact ? "Soon" : "Coming soon";
+}
 
 export const games: Game[] = [
   {
@@ -45,6 +52,25 @@ export const games: Game[] = [
     cover: "/games/studio-lab.jpg",
     hero: "/games/studio-lab.jpg",
     highlights: ["In development", "Studio experiments", "Not playable yet"],
+  },
+  {
+    slug: "adventure-artist",
+    title: "Adventure Artist",
+    tagline: "Every Blueprint, explained.",
+    description:
+      "The Blueprint Book for the Unreal project. It records the adventure, the first-person template, the prototype actors, and the arena shooter. Read it by chapter on this site, or download the typeset PDF.",
+    genre: "Blueprint study",
+    platforms: ["Web"],
+    status: "readable",
+    engine: "Unreal Engine",
+    cover: "/games/adventure-artist-cover.jpg",
+    hero: "/games/adventure-artist-hero.jpg",
+    highlights: [
+      "77 Blueprints",
+      "Three-part reading order",
+      "PDF of the full book",
+    ],
+    readHref: "/book",
   },
 ];
 

@@ -4,6 +4,7 @@ import {
   streamText,
   type UIMessage,
 } from "ai";
+import { bookFacts } from "@/lib/book";
 
 export const maxDuration = 30;
 
@@ -14,8 +15,11 @@ Studio facts:
 - The live catalog currently features FGIU, a third-person 3D platformer built in Unreal Engine 5.8 for Windows.
 - FGIU is a playable Windows build with floating-island platforming.
 - Studio Lab is a coming-soon holding bay for prototypes, not a playable game.
+- Adventure Artist is a readable Blueprint Book on this site, not a downloadable game build.
 
-Be concise, practical, and friendly. Help players pick a game, explain FGIU, and point them to Library, Downloads, News, Community, or Support. If you do not know something, say so instead of inventing patch notes or prices.`;
+${bookFacts()}
+
+Be concise, practical, and friendly. Help players pick a game, explain FGIU, and explain the Blueprint Book using only the facts above. Point them to Library, Downloads, News, Community, Support, or /book. If you do not know something, say so instead of inventing patch notes, prices, or Blueprint details the dump left blank.`;
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
