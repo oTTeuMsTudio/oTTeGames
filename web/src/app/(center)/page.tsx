@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GameCard } from "@/components/game-center/game-card";
+import { NodeGallery } from "@/components/game-center/node-graph";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { searchBook } from "@/lib/book";
+import { featuredNodeFigures, searchBook } from "@/lib/book";
 import { featuredGame, games } from "@/lib/games";
 
 export default async function StorePage({
@@ -44,10 +45,14 @@ export default async function StorePage({
               {featuredGame.tagline} {featuredGame.description}
             </p>
             <div className="flex flex-wrap gap-2">
-              <Button asChild>
+              <Button asChild className="!bg-white !text-black hover:!bg-white/90">
                 <Link href={`/games/${featuredGame.slug}`}>View game</Link>
               </Button>
-              <Button asChild variant="outline">
+              <Button
+                asChild
+                variant="outline"
+                className="!border-white/70 !bg-transparent !text-white hover:!bg-white/15"
+              >
                 <Link href="/library">Open library</Link>
               </Button>
             </div>
@@ -56,7 +61,7 @@ export default async function StorePage({
       </section>
 
       {query ? null : (
-        <section className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-4">
+        <section className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-white px-4 py-4">
           <div>
             <p className="text-sm font-medium">Adventure Artist Blueprint Book</p>
             <p className="text-sm text-muted-foreground">
@@ -66,6 +71,19 @@ export default async function StorePage({
           <Button asChild variant="outline">
             <Link href="/book">Open the book</Link>
           </Button>
+        </section>
+      )}
+
+      {query ? null : (
+        <section className="space-y-4">
+          <div>
+            <h2 className="font-heading text-xl font-medium">Blueprint nodes</h2>
+            <p className="text-sm text-muted-foreground">
+              Graphs from Adventure Artist, drawn from the editor dump. Open a
+              picture to read that Blueprint.
+            </p>
+          </div>
+          <NodeGallery figures={featuredNodeFigures()} />
         </section>
       )}
 

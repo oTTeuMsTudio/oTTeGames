@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { book } from "@/lib/book";
+import { NodeGallery } from "@/components/game-center/node-graph";
+import { book, featuredNodeFigures } from "@/lib/book";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
@@ -38,6 +39,15 @@ export default function BookPage() {
           </Button>
         </div>
       </header>
+
+      <section className="space-y-4">
+        <h2 className="font-heading text-xl font-medium">Nodes from the dump</h2>
+        <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
+          These pictures use the node titles and wires stored for each graph.
+          Reroute knots are left out. The wires jump across them.
+        </p>
+        <NodeGallery figures={featuredNodeFigures()} />
+      </section>
 
       <section className="space-y-3">
         <h2 className="font-heading text-xl font-medium">How this center is organized</h2>

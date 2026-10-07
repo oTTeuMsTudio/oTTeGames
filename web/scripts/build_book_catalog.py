@@ -301,7 +301,7 @@ CHAPTERS = [
 PREFACE = [
     "Adventure Artist contains three layers of Blueprint work. The adventure itself is under AdventureGame: a first-person player, keys, switches, a cube, platforms, fire and spike traps, a level transition, and the screens that end a run. The Artist folder is the art pass of those ideas, plus music, footsteps, a cube spawner, and room logos. Around that work the project still holds Epic's first-person template, a few prototyping actors, the mannequin animation Blueprint, and the Variant Shooter sample.",
     "On this site the same three layers are the menu. Part I is the adventure, Part II is the template and the prototypes, and Part III is the arena shooter. Each chapter explains the group. Each Blueprint has its own page, and the left menu lists that chapter's Blueprints while you are reading it.",
-    "The pages follow the dump. An event or a function is a graph. The calls named on a page are the function, event, cast, and timeline nodes in that graph. A graph with no nodes is named and left empty. Nothing here fills a blank the dump left empty.",
+    "The pages follow the dump. An event or a function is a graph. The calls named on a page are the function, event, cast, and timeline nodes in that graph. Each graph with nodes is drawn from the titles and wires in the dump. Reroute knots are left out, and the wires jump across them. A graph with no nodes is named and left empty. Nothing here fills a blank the dump left empty.",
     "Parent classes, component trees, variable defaults, widget trees, and enum display names are empty for almost every asset. Variables mentioned on a page are the ones Get and Set nodes name. BP_Keyport did not load. Many control-rig graphs are named and contain no nodes.",
     "The PDF is the same record, typeset as a book: every graph written out as the steps it runs. These pages are the map of that book.",
 ]
@@ -341,6 +341,128 @@ def interesting_calls(graph):
     return calls
 
 
+def skip_visual(node):
+    cls = node.get("class") or ""
+    return any(part in cls for part in ("Knot", "Comment", "Reroute"))
+
+
+def visual_kind(node):
+    cls = node.get("class") or ""
+    if skip_visual(node):
+        return None
+    if (
+        "CustomEvent" in cls
+        or "ComponentBoundEvent" in cls
+        or "InputAction" in cls
+        or "EnhancedInputAction" in cls
+        or cls.endswith("Event")
+    ):
+        return "event"
+    if "FunctionEntry" in cls or "FunctionResult" in cls:
+        return "function"
+    if "IfThenElse" in cls or "ExecutionSequence" in cls or "MacroInstance" in cls:
+        return "flow"
+    if "Timeline" in cls:
+        return "timeline"
+    if "Cast" in cls:
+        return "cast"
+    if "VariableSet" in cls:
+        return "set"
+    if "VariableGet" in cls:
+        return "variable"
+    if any(
+        part in cls
+        for part in ("PromotableOperator", "EnumEquality", "BinaryOperator", "Commutative")
+    ):
+        return "pure"
+    if "AnimGraph" in cls:
+        return "anim"
+    pins = node.get("pins") or []
+    if not any((pin.get("type") or "") == "Exec" for pin in pins):
+        return "pure"
+    return "call"
+
+
+def node_title(node):
+    title = " ".join(((node.get("title") or "").strip()).split())
+    if not title:
+        title = (node.get("class") or "Node").split("_")[-1]
+    if len(title) > 48:
+        title = title[:47].rstrip() + "…"
+    return title
+
+
+def node_point(node):
+    pos = node.get("pos") or [0, 0]
+    try:
+        return int(round(float(pos[0]))), int(round(float(pos[1])))
+    except (TypeError, ValueError, IndexError):
+        return 0, 0
+
+
+def follow_targets(pin, by_id, seen):
+    found = []
+    for link in pin.get("links") or []:
+        if not link:
+            continue
+        nid = link.split(".", 1)[0]
+        if not nid or nid in seen:
+            continue
+        node = by_id.get(nid)
+        if node is None:
+            continue
+        next_seen = seen | {nid}
+        if skip_visual(node):
+            for child in node.get("pins") or []:
+                if "OUTPUT" in (child.get("direction") or ""):
+                    found.extend(follow_targets(child, by_id, next_seen))
+        else:
+            found.append(nid)
+    return found
+
+
+def graph_picture(graph):
+    nodes = graph.get("nodes") or []
+    by_id = {}
+    for node in nodes:
+        nid = node.get("id")
+        if nid:
+            by_id[nid] = node
+    drawn = []
+    for node in nodes:
+        kind = visual_kind(node)
+        nid = node.get("id")
+        if not kind or not nid:
+            continue
+        x, y = node_point(node)
+        drawn.append({"id": nid, "title": node_title(node), "kind": kind, "x": x, "y": y})
+    if not drawn:
+        return None
+    included = {item["id"] for item in drawn}
+    wires = {}
+    for node in nodes:
+        nid = node.get("id")
+        if nid not in included:
+            continue
+        for pin in node.get("pins") or []:
+            if "OUTPUT" not in (pin.get("direction") or ""):
+                continue
+            kind = "exec" if (pin.get("type") or "") == "Exec" else "data"
+            for dst in follow_targets(pin, by_id, {nid}):
+                if dst == nid or dst not in included:
+                    continue
+                key = (nid, dst)
+                if wires.get(key) != "exec":
+                    wires[key] = kind
+    return {
+        "nodes": drawn,
+        "wires": [
+            {"from": src, "to": dst, "kind": kind}
+            for (src, dst), kind in wires.items()
+        ],
+    }
+
+
 def summarize_graphs(graphs):
     filled = []
     empty_names = []
@@ -348,13 +470,15 @@ def summarize_graphs(graphs):
         name = graph.get("name") or "Graph"
         nodes = graph.get("nodes") or []
         if nodes:
-            filled.append(
-                {
-                    "name": name,
-                    "nodes": len(nodes),
-                    "calls": interesting_calls(graph),
-                }
-            )
+            item = {
+                "name": name,
+                "nodes": len(nodes),
+                "calls": interesting_calls(graph),
+            }
+            picture = graph_picture(graph)
+            if picture:
+                item["picture"] = picture
+            filled.append(item)
         else:
             empty_names.append(name)
     return filled, empty_names

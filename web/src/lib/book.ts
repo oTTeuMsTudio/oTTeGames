@@ -1,9 +1,29 @@
 import catalog from "@/data/blueprint-book.json";
 
+export type NodePictureNode = {
+  id: string;
+  title: string;
+  kind: string;
+  x: number;
+  y: number;
+};
+
+export type NodePictureWire = {
+  from: string;
+  to: string;
+  kind: "exec" | "data";
+};
+
+export type NodePicture = {
+  nodes: NodePictureNode[];
+  wires: NodePictureWire[];
+};
+
 export type BookGraph = {
   name: string;
   nodes: number;
   calls: string[];
+  picture?: NodePicture;
 };
 
 export type BookAsset = {
@@ -138,6 +158,51 @@ export function searchBook(query: string): BookHit[] {
   return hits.slice(0, 12);
 }
 
+export type NodeFigure = {
+  href: string;
+  assetName: string;
+  chapterTitle: string;
+  graph: BookGraph;
+};
+
+const featuredNodePicks: [string, string][] = [
+  ["BP_Key", "EventGraph"],
+  ["BP_Switch", "UserConstructionScript"],
+  ["BP_TrapBase", "fnApplyDamageToTarget"],
+  ["BP_BGM", "EventGraph"],
+];
+
+function pictureFits(graph: BookGraph) {
+  const count = graph.picture?.nodes.length ?? 0;
+  return count >= 3 && count <= 14;
+}
+
+function graphWithPicture(asset: BookAsset, graphName: string) {
+  const named = asset.graphs.find(
+    (graph) => graph.name === graphName && pictureFits(graph),
+  );
+  if (named) return named;
+  return asset.graphs.find((graph) => pictureFits(graph));
+}
+
+export function featuredNodeFigures(): NodeFigure[] {
+  const figures: NodeFigure[] = [];
+  for (const [assetName, graphName] of featuredNodePicks) {
+    for (const { chapter, asset } of readingOrder()) {
+      if (asset.name !== assetName) continue;
+      const graph = graphWithPicture(asset, graphName);
+      if (!graph) continue;
+      figures.push({
+        href: `/book/${chapter.slug}/${asset.slug}`,
+        assetName: asset.name,
+        chapterTitle: chapter.title,
+        graph,
+      });
+    }
+  }
+  return figures;
+}
+
 export function bookFacts() {
   const lines = [
     `Adventure Artist, The Blueprint Book, is at /book. The PDF is ${book.pdf}. Dated ${book.dated}.`,
@@ -153,6 +218,7 @@ export function bookFacts() {
     }
   }
   lines.push(
+    "Each Blueprint page draws the graphs that have nodes. Pictures use the titles and wires from the dump. Reroute knots are omitted and the wires jump across them.",
     "Parent classes, component trees, variable defaults, widget trees, and enum display names were blank in the dump. Do not invent them. BP_Keyport failed to load. Many control-rig graphs are named and have no nodes.",
   );
   return lines.join("\n");

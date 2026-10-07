@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { NodeGraph } from "@/components/game-center/node-graph";
 import { book, getAsset, kindLabel, neighbors, readingOrder } from "@/lib/book";
 import { Button } from "@/components/ui/button";
 
@@ -84,6 +85,14 @@ export default async function AssetPage({
                     {graph.nodes === 1 ? "node" : "nodes"}
                   </p>
                 </div>
+                {graph.picture ? (
+                  <div className="mt-3">
+                    <NodeGraph
+                      graph={graph}
+                      label={`${asset.name} · ${graph.name}`}
+                    />
+                  </div>
+                ) : null}
                 {graph.calls.length > 0 ? (
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">
                     {graph.calls.join(", ")}

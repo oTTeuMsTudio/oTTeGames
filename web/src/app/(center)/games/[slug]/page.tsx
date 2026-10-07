@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { NodeGallery } from "@/components/game-center/node-graph";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { book } from "@/lib/book";
+import { book, featuredNodeFigures } from "@/lib/book";
 import { games, getGame, statusLabel } from "@/lib/games";
 
 export function generateStaticParams() {
@@ -92,6 +93,16 @@ export default async function GamePage({
           </li>
         ))}
       </ul>
+
+      {game.readHref ? (
+        <section className="space-y-4">
+          <h2 className="font-heading text-xl font-medium">Blueprint nodes</h2>
+          <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
+            A few graphs from the book, drawn from the editor dump.
+          </p>
+          <NodeGallery figures={featuredNodeFigures()} />
+        </section>
+      ) : null}
 
       {game.readHref ? (
         <section className="space-y-4">

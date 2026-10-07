@@ -26,8 +26,8 @@ export function NavLink({
         className={cn(
           "inline-flex h-9 items-center gap-2 rounded-md px-3 text-sm font-medium transition-colors",
           active
-            ? "bg-white/10 text-foreground"
-            : "text-muted-foreground hover:bg-white/5 hover:text-foreground",
+            ? "bg-muted text-foreground"
+            : "text-muted-foreground hover:bg-muted hover:text-foreground",
         )}
       >
         {item.label}
@@ -42,7 +42,7 @@ export function NavLink({
         "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
         active
           ? "bg-brand/15 text-foreground ring-1 ring-brand/40"
-          : "text-muted-foreground hover:bg-white/5 hover:text-foreground",
+          : "text-muted-foreground hover:bg-muted hover:text-foreground",
       )}
     >
       <Icon className="size-4" />

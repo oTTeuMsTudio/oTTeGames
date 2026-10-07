@@ -30,9 +30,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full bg-white antialiased`}
     >
-      <body className="min-h-full bg-background font-sans text-foreground">
+      <body className="min-h-full bg-white font-sans text-foreground">
         <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>

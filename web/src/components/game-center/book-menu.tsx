@@ -24,7 +24,7 @@ export function BookMenu({ onNavigate }: { onNavigate?: () => void }) {
           "block rounded-lg px-3 py-2 text-sm font-medium",
           overview
             ? "bg-brand/15 text-foreground ring-1 ring-brand/40"
-            : "text-muted-foreground hover:bg-white/5 hover:text-foreground",
+            : "text-muted-foreground hover:bg-muted hover:text-foreground",
         )}
         aria-current={overview ? "page" : undefined}
       >
@@ -47,7 +47,7 @@ export function BookMenu({ onNavigate }: { onNavigate?: () => void }) {
                     "block rounded-lg px-3 py-1.5 text-xs leading-4",
                     open
                       ? "bg-brand/15 font-medium text-foreground"
-                      : "text-muted-foreground hover:bg-white/5 hover:text-foreground",
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground",
                   )}
                   aria-current={open && !assetSlug ? "page" : undefined}
                 >

@@ -21,7 +21,7 @@ export function GameCenterShell({ children }: { children: React.ReactNode }) {
   const [botOpen, setBotOpen] = useState(false);
 
   return (
-    <div className="flex h-dvh flex-col overflow-hidden bg-background">
+    <div className="flex h-dvh flex-col overflow-hidden bg-white">
       <header className="flex h-16 shrink-0 border-b border-border">
         <div className="w-16 shrink-0 bg-white md:w-60">
           <StudioLogo />

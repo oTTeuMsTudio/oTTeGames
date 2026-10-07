@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { NodeGraph } from "@/components/game-center/node-graph";
 import { bookChapters, getChapter, kindLabel } from "@/lib/book";
 
 export function generateStaticParams() {
@@ -50,7 +51,7 @@ export default async function ChapterPage({
           <li key={asset.slug}>
             <Link
               href={`/book/${chapter.slug}/${asset.slug}`}
-              className="block rounded-xl border border-border bg-card px-4 py-4 transition-colors hover:border-brand/50"
+              className="block min-w-0 overflow-hidden rounded-xl border border-border bg-card px-4 py-4 transition-colors hover:border-brand/50"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h2 className="font-mono text-sm font-medium">{asset.name}</h2>
@@ -67,6 +68,17 @@ export default async function ChapterPage({
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
                 {asset.summary}
               </p>
+              {asset.graphs[0]?.picture &&
+              asset.graphs[0].picture.nodes.length > 1 &&
+              asset.graphs[0].picture.nodes.length <= 14 ? (
+                <div className="mt-3">
+                  <NodeGraph
+                    graph={asset.graphs[0]}
+                    compact
+                    label={`${asset.name} · ${asset.graphs[0].name}`}
+                  />
+                </div>
+              ) : null}
             </Link>
           </li>
         ))}
