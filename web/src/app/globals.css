@@ -134,3 +134,11 @@
     @apply font-sans;
   }
 }
+
+.page-canvas {
+  background-color: oklch(0.94 0.035 255);
+  background-image:
+    radial-gradient(ellipse 85% 42% at 0% -8%, oklch(0.78 0.14 235 / 0.7), transparent 58%),
+    radial-gradient(ellipse 70% 40% at 100% -6%, oklch(0.82 0.15 55 / 0.55), transparent 52%),
+    radial-gradient(ellipse 55% 34% at 72% 108%, oklch(0.76 0.13 320 / 0.38), transparent 50%);
+}

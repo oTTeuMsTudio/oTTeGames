@@ -8,8 +8,11 @@ export type DocLink = {
   children?: DocLink[];
 };
 
-const linkClass =
-  "rounded-md px-2 py-1 text-sm text-muted-foreground hover:bg-muted hover:text-foreground";
+const row =
+  "flex gap-1.5 overflow-x-auto overscroll-x-contain py-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden";
+
+const chip =
+  "min-h-11 shrink-0 rounded-full px-3 py-2 text-sm font-medium lg:min-h-0 lg:px-2.5 lg:py-1";
 
 export function TopMenu({
   menu,
@@ -29,19 +32,25 @@ export function TopMenu({
   }
 
   return (
-    <header className="shrink-0 border-b border-border bg-white">
-      <div className="flex h-11 items-center gap-3">
-        <a href="#sheet" className="shrink-0 text-sm font-semibold tracking-tight">
+    <header className="shrink-0 border-b border-sky-200 bg-white/90 backdrop-blur-md">
+      <div className="flex h-12 items-center gap-2">
+        <a
+          href="#sheet"
+          className="shrink-0 bg-gradient-to-r from-sky-700 via-indigo-600 to-orange-600 bg-clip-text text-base font-bold tracking-tight text-transparent"
+        >
           oTTeGames
         </a>
-        <p className="hidden shrink-0 text-xs text-muted-foreground sm:block">
+        <p className="hidden shrink-0 rounded-full bg-violet-100 px-2 py-0.5 text-[11px] font-semibold text-violet-800 sm:block">
           Unreal Engine 5.8
         </p>
-        <p className="ml-auto shrink-0 text-xs text-muted-foreground">
+        <p className="ml-auto shrink-0 rounded-full bg-orange-100 px-2.5 py-1 text-xs font-semibold text-orange-900">
           {menuLinks > 0 ? `${menuLinks.toLocaleString()} docs` : "Docs"}
         </p>
       </div>
-      <nav aria-label="Unreal Engine documentation" className="flex flex-wrap gap-1 pb-2">
+      <nav
+        aria-label="Unreal Engine documentation"
+        className={`${row} lg:flex-wrap lg:overflow-visible`}
+      >
         {menu.map((section) => {
           const selected = section.href === categoryHref;
           return (
@@ -50,8 +59,10 @@ export function TopMenu({
               type="button"
               aria-expanded={selected}
               onClick={() => chooseCategory(section.href)}
-              className={`rounded-md px-2 py-1 text-left text-sm ${
-                selected ? "bg-foreground text-background" : "hover:bg-muted"
+              className={`${chip} ${
+                selected
+                  ? "bg-sky-700 text-white shadow-sm"
+                  : "bg-white text-sky-950 ring-1 ring-sky-200 hover:bg-sky-50"
               }`}
             >
               {section.title}
@@ -60,8 +71,15 @@ export function TopMenu({
         })}
       </nav>
       {category ? (
-        <div className="flex max-h-32 flex-wrap content-start gap-1 overflow-y-auto border-t border-border py-2">
-          <a href={category.href} target="_blank" rel="noreferrer" className={linkClass}>
+        <div
+          className={`${row} border-t border-amber-100 lg:max-h-32 lg:flex-wrap lg:overflow-x-hidden lg:overflow-y-auto`}
+        >
+          <a
+            href={category.href}
+            target="_blank"
+            rel="noreferrer"
+            className={`${chip} bg-emerald-50 text-emerald-950 ring-1 ring-emerald-200 hover:bg-emerald-100`}
+          >
             {category.title}
           </a>
           {(category.children ?? []).map((child) => {
@@ -73,7 +91,7 @@ export function TopMenu({
                   href={child.href}
                   target="_blank"
                   rel="noreferrer"
-                  className={linkClass}
+                  className={`${chip} bg-emerald-50 text-emerald-950 ring-1 ring-emerald-200 hover:bg-emerald-100`}
                 >
                   {child.title}
                 </a>
@@ -86,8 +104,10 @@ export function TopMenu({
                 type="button"
                 aria-expanded={selected}
                 onClick={() => setGroupHref(selected ? null : child.href)}
-                className={`rounded-md px-2 py-1 text-left text-sm ${
-                  selected ? "bg-muted font-medium text-foreground" : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                className={`${chip} ${
+                  selected
+                    ? "bg-amber-700 text-white"
+                    : "bg-amber-50 text-amber-950 ring-1 ring-amber-200 hover:bg-amber-100"
                 }`}
               >
                 {child.title}
@@ -97,14 +117,16 @@ export function TopMenu({
         </div>
       ) : null}
       {group && (group.children?.length ?? 0) > 0 ? (
-        <div className="flex max-h-28 flex-wrap content-start gap-1 overflow-y-auto border-t border-border py-2">
+        <div
+          className={`${row} border-t border-emerald-100 lg:max-h-28 lg:flex-wrap lg:overflow-x-hidden lg:overflow-y-auto`}
+        >
           {group.children?.map((link) => (
             <a
               key={link.href}
               href={link.href}
               target="_blank"
               rel="noreferrer"
-              className={linkClass}
+              className={`${chip} bg-emerald-50 text-emerald-950 ring-1 ring-emerald-200 hover:bg-emerald-100`}
             >
               {link.title}
             </a>

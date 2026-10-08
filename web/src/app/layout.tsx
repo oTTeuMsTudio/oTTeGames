@@ -30,9 +30,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full overflow-hidden bg-white antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} min-h-full antialiased lg:h-dvh lg:overflow-hidden`}
     >
-      <body className="h-dvh overflow-hidden bg-white font-sans text-foreground">
+      <body className="page-canvas min-h-dvh font-sans text-foreground lg:h-dvh lg:overflow-hidden">
         <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>
