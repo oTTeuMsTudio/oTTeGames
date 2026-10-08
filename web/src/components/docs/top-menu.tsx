@@ -1,12 +1,15 @@
+"use client";
+
+import { useState } from "react";
+
 export type DocLink = {
   title: string;
   href: string;
   children?: DocLink[];
 };
 
-function flatten(links: DocLink[] = []): DocLink[] {
-  return links.flatMap((link) => [link, ...flatten(link.children)]);
-}
+const linkClass =
+  "rounded-md px-2 py-1 text-sm text-muted-foreground hover:bg-muted hover:text-foreground";
 
 export function TopMenu({
   menu,
@@ -15,9 +18,19 @@ export function TopMenu({
   menu: DocLink[];
   menuLinks: number;
 }) {
+  const [categoryHref, setCategoryHref] = useState<string | null>(null);
+  const [groupHref, setGroupHref] = useState<string | null>(null);
+  const category = menu.find((item) => item.href === categoryHref) ?? null;
+  const group = category?.children?.find((item) => item.href === groupHref) ?? null;
+
+  function chooseCategory(href: string) {
+    setCategoryHref((current) => (current === href ? null : href));
+    setGroupHref(null);
+  }
+
   return (
     <header className="shrink-0 border-b border-border bg-white">
-      <div className="flex h-11 items-center gap-3 px-3">
+      <div className="flex h-11 items-center gap-3">
         <a href="#sheet" className="shrink-0 text-sm font-semibold tracking-tight">
           oTTeGames
         </a>
@@ -28,38 +41,76 @@ export function TopMenu({
           {menuLinks > 0 ? `${menuLinks.toLocaleString()} docs` : "Docs"}
         </p>
       </div>
-      <nav
-        aria-label="Unreal Engine documentation"
-        className="flex h-10 items-center gap-1 overflow-x-auto px-2"
-      >
+      <nav aria-label="Unreal Engine documentation" className="flex flex-wrap gap-1 pb-2">
         {menu.map((section) => {
-          const links = flatten(section.children);
+          const selected = section.href === categoryHref;
           return (
-            <div key={section.href} className="flex shrink-0 items-center">
-              <a
-                href={section.href}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-              >
-                {section.title}
-              </a>
-              {links.map((link) => (
-                <a
-                  key={`${section.href}:${link.href}`}
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-md px-2 py-1 text-xs text-muted-foreground hover:bg-muted hover:text-foreground"
-                >
-                  {link.title}
-                </a>
-              ))}
-              <span aria-hidden className="mx-1 h-4 w-px bg-border" />
-            </div>
+            <button
+              key={section.href}
+              type="button"
+              aria-expanded={selected}
+              onClick={() => chooseCategory(section.href)}
+              className={`rounded-md px-2 py-1 text-left text-sm ${
+                selected ? "bg-foreground text-background" : "hover:bg-muted"
+              }`}
+            >
+              {section.title}
+            </button>
           );
         })}
       </nav>
+      {category ? (
+        <div className="flex max-h-32 flex-wrap content-start gap-1 overflow-y-auto border-t border-border py-2">
+          <a href={category.href} target="_blank" rel="noreferrer" className={linkClass}>
+            {category.title}
+          </a>
+          {(category.children ?? []).map((child) => {
+            const nested = child.children ?? [];
+            if (nested.length === 0) {
+              return (
+                <a
+                  key={child.href}
+                  href={child.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={linkClass}
+                >
+                  {child.title}
+                </a>
+              );
+            }
+            const selected = child.href === groupHref;
+            return (
+              <button
+                key={child.href}
+                type="button"
+                aria-expanded={selected}
+                onClick={() => setGroupHref(selected ? null : child.href)}
+                className={`rounded-md px-2 py-1 text-left text-sm ${
+                  selected ? "bg-muted font-medium text-foreground" : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                }`}
+              >
+                {child.title}
+              </button>
+            );
+          })}
+        </div>
+      ) : null}
+      {group && (group.children?.length ?? 0) > 0 ? (
+        <div className="flex max-h-28 flex-wrap content-start gap-1 overflow-y-auto border-t border-border py-2">
+          {group.children?.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className={linkClass}
+            >
+              {link.title}
+            </a>
+          ))}
+        </div>
+      ) : null}
     </header>
   );
 }

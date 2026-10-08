@@ -88,7 +88,7 @@ export function NodeSheet() {
   return (
     <section
       id="sheet"
-      className="flex h-[min(40rem,calc(100dvh-9rem))] w-full max-w-5xl min-h-0 flex-col overflow-hidden rounded-xl border border-border bg-white"
+      className="flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden rounded-xl border border-border bg-white"
     >
       <div className="flex shrink-0 flex-wrap items-center gap-2 border-b border-border px-3 py-2">
         <label className="sr-only" htmlFor="node-search">
