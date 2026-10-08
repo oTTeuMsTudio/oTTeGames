@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s · oTTeGames",
   },
   description:
-    "The oTTeGames game center — play FGIU, and read the Adventure Artist Blueprint Book.",
+    "Full-screen index of Unreal Engine nodes and blueprints, with official documentation links.",
 };
 
 export default function RootLayout({
@@ -30,9 +30,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full bg-white antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full overflow-hidden bg-white antialiased`}
     >
-      <body className="min-h-full bg-white font-sans text-foreground">
+      <body className="h-dvh overflow-hidden bg-white font-sans text-foreground">
         <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>

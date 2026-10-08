@@ -1,19 +1,19 @@
 # oTTeGames
 
-Game center for the oTTeGames studio: store, library, an in-app AI concierge, and the Adventure Artist Blueprint Book.
+Full-screen index of Unreal Engine 5.8 blueprint nodes, blueprint groups, and visual-scripting node references. Names link to the official explanations on the Epic Developer Community. The top menu is generated from the documentation sections on [Unreal Engine 5.8 Documentation](https://dev.epicgames.com/documentation/unreal-engine).
 
-The book lives at `/book`. Its left menu is generated from `web/src/data/blueprint-book.json` (parts, chapters, and one page per Blueprint). The PDF is `web/public/books/adventure-artist-blueprint-book.pdf`. Regenerate the catalog with `web/scripts/build_book_catalog.py` after a fresh editor dump.
+The Next.js app lives in `web/`. Refresh the index with:
 
-The top-down tutorial lives at `/tutorial`. It is generated from the same dump by `web/scripts/build_topdown_tutorial.py`, which also writes the lesson notes under `Docs/FirstTenMillion`.
+```bash
+node web/scripts/fetch-ue-index.mjs
+```
 
-The Next.js app lives in `web/`. The Unreal Windows package in `Packaged/` stays local and is not committed.
+That writes `web/public/ue-nodes.json`, `web/src/data/ue-menu.json`, and `web/src/data/ue-meta.json`.
 
 ## Local
 
 ```bash
 cd web
-cp .env.example .env.local
-# set XAI_API_KEY for oTTe Bot
 npm install
 npm run dev
 ```
@@ -23,5 +23,3 @@ npm run dev
 Live: https://ottegames.vercel.app
 
 Vercel project root is `web`. GitHub repo: https://github.com/oTTeuMsTudio/oTTeGames
-
-oTTe Bot uses SpaceXAI (`grok-4.6`). Set `XAI_API_KEY` in Vercel project env (or `web/.env.local`) so the right-hand chat can reply.
