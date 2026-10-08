@@ -10,7 +10,9 @@ export default function CenterLayout({
   return (
     <div className="flex h-dvh flex-col overflow-hidden bg-white">
       <TopMenu menu={menu as DocLink[]} menuLinks={meta.menuLinks} />
-      <main className="flex min-h-0 flex-1 flex-col">{children}</main>
+      <main className="flex min-h-0 flex-1 items-center justify-center overflow-hidden px-6 py-8">
+        {children}
+      </main>
     </div>
   );
 }

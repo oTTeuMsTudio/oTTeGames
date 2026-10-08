@@ -14,7 +14,7 @@ type NodeRow = {
 const DOC = "https://dev.epicgames.com/documentation/unreal-engine/";
 const ROW_HEIGHT = 34;
 const COLUMNS =
-  "grid-cols-[4.5rem_9.5rem_minmax(18rem,1.3fr)_minmax(20rem,1.7fr)_9rem]";
+  "grid-cols-[3.25rem_7.5rem_minmax(9rem,1.1fr)_minmax(11rem,1.4fr)_6.5rem]";
 
 const KIND_LABEL: Record<Kind, string> = {
   b: "Node",
@@ -86,7 +86,10 @@ export function NodeSheet() {
   const visible = filtered.slice(start, start + count);
 
   return (
-    <section id="sheet" className="flex min-h-0 flex-1 flex-col">
+    <section
+      id="sheet"
+      className="flex h-[min(40rem,calc(100dvh-9rem))] w-full max-w-5xl min-h-0 flex-col overflow-hidden rounded-xl border border-border bg-white"
+    >
       <div className="flex shrink-0 flex-wrap items-center gap-2 border-b border-border px-3 py-2">
         <label className="sr-only" htmlFor="node-search">
           Search nodes and blueprints
@@ -128,7 +131,7 @@ export function NodeSheet() {
           className="h-full overflow-auto"
           onScroll={(event) => setScrollTop(event.currentTarget.scrollTop)}
         >
-          <div className="min-w-[1100px]">
+          <div className="min-w-[44rem]">
             <div
               className={`sticky top-0 z-10 grid ${COLUMNS} border-b border-border bg-muted text-xs font-medium tracking-wide text-muted-foreground uppercase`}
             >
